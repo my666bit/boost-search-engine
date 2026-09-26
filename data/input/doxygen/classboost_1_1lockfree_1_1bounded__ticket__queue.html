@@ -1,0 +1,437 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Class template bounded_ticket_queue</title>
+<link rel="stylesheet" href="../../../doc/src/boostbook.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.79.1">
+<link rel="home" href="../index.html" title="The Boost C++ Libraries BoostBook Documentation Subset">
+<link rel="up" href="../lockfree/reference.html#doxygen.bounded__ticket__queue_8hpp" title="Header &lt;boost/lockfree/bounded_ticket_queue.hpp&gt;">
+<link rel="prev" href="../lockfree/reference.html" title="Reference">
+<link rel="next" href="classboost_1_1lockfree_1_1mpsc__weak__queue.html" title="Class template mpsc_weak_queue">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table cellpadding="2" width="100%"><tr>
+<td valign="top"><img alt="Boost C++ Libraries" width="277" height="86" src="../../../boost.png"></td>
+<td align="center"><a href="../../../index.html">Home</a></td>
+<td align="center"><a href="../../../libs/libraries.htm">Libraries</a></td>
+<td align="center"><a href="http://www.boost.org/users/people.html">People</a></td>
+<td align="center"><a href="http://www.boost.org/users/faq.html">FAQ</a></td>
+<td align="center"><a href="../../../more/index.htm">More</a></td>
+</tr></table>
+<hr>
+<div class="spirit-nav">
+<a accesskey="p" href="../lockfree/reference.html"><img src="../../../doc/src/images/prev.png" alt="Prev"></a><a accesskey="u" href="../lockfree/reference.html#doxygen.bounded__ticket__queue_8hpp"><img src="../../../doc/src/images/up.png" alt="Up"></a><a accesskey="h" href="../index.html"><img src="../../../doc/src/images/home.png" alt="Home"></a><a accesskey="n" href="classboost_1_1lockfree_1_1mpsc__weak__queue.html"><img src="../../../doc/src/images/next.png" alt="Next"></a>
+</div>
+<div class="refentry">
+<a name="doxygen.classboost_1_1lockfree_1_1bounded__ticket__queue"></a><div class="titlepage"></div>
+<div class="refnamediv">
+<h2><span class="refentrytitle">Class template bounded_ticket_queue</span></h2>
+<p>boost::lockfree::bounded_ticket_queue</p>
+</div>
+<h2 class="refsynopsisdiv-title">Synopsis</h2>
+<div class="refsynopsisdiv"><pre class="synopsis"><span class="comment">// In header: &lt;<a class="link" href="../lockfree/reference.html#doxygen.bounded__ticket__queue_8hpp" title="Header &lt;boost/lockfree/bounded_ticket_queue.hpp&gt;">boost/lockfree/bounded_ticket_queue.hpp</a>&gt;
+
+</span><span class="keyword">template</span><span class="special">&lt;</span><span class="keyword">typename</span> T<span class="special">,</span> <span class="keyword">typename</span><span class="special">...</span> Options<span class="special">&gt;</span> 
+<span class="keyword">class</span> <a class="link" href="classboost_1_1lockfree_1_1bounded__ticket__queue.html" title="Class template bounded_ticket_queue">bounded_ticket_queue</a> <span class="special">{</span>
+<span class="keyword">public</span><span class="special">:</span>
+  <span class="comment">// types</span>
+  <span class="keyword">typedef</span> <span class="identifier">T</span>                                 <a name="doxygen.classboost_1_1lockfree_1_1bounded__ticket__queue_1a7242c45f68e64ea1993d7cbe79091be5"></a><span class="identifier">value_type</span><span class="special">;</span>
+  <span class="keyword">typedef</span> <span class="identifier">implementation_defined</span><span class="special">::</span><span class="identifier">allocator</span> <a name="doxygen.classboost_1_1lockfree_1_1bounded__ticket__queue_1a21c595a43f88d183b65d1fcec320d000"></a><span class="identifier">allocator</span><span class="special">;</span> 
+  <span class="keyword">typedef</span> <span class="identifier">implementation_defined</span><span class="special">::</span><span class="identifier">size_type</span> <a name="doxygen.classboost_1_1lockfree_1_1bounded__ticket__queue_1ac888d4c593ad14c9db1000d7517f2393"></a><span class="identifier">size_type</span><span class="special">;</span> 
+
+  <span class="comment">// <a class="link" href="classboost_1_1lockfree_1_1bounded__ticket__queue.html#id-1_3_20_6_1_1_1_1_6-bb">public member functions</a></span>
+  <span class="keyword">bool</span> <a class="link" href="classboost_1_1lockfree_1_1bounded__ticket__queue.html#doxygen.classboost_1_1lockfree_1_1bounded__ticket__queue_1a31ce5cad97208a59311619edad984f6a"><span class="identifier">is_lock_free</span></a><span class="special">(</span><span class="special">)</span> <span class="keyword">const</span><span class="special">;</span>
+  <a class="link" href="classboost_1_1lockfree_1_1bounded__ticket__queue.html#doxygen.classboost_1_1lockfree_1_1bounded__ticket__queue_1a153562d5d2fe97be2f2db7aae7d1a51c"><span class="identifier">bounded_ticket_queue</span></a><span class="special">(</span><span class="special">)</span><span class="special">;</span>
+  <span class="keyword">template</span><span class="special">&lt;</span><span class="keyword">typename</span> Enabler <span class="special">=</span> <span class="identifier">std</span><span class="special">::</span><span class="identifier">enable_if</span><span class="special">&lt;</span> <span class="special">!</span><span class="identifier">has_capacity</span> <span class="special">&gt;</span> <span class="special">&gt;</span> 
+    <span class="keyword">explicit</span> <a class="link" href="classboost_1_1lockfree_1_1bounded__ticket__queue.html#doxygen.classboost_1_1lockfree_1_1bounded__ticket__queue_1a621f6d1d31a9e14cf20c5a9dde884f18"><span class="identifier">bounded_ticket_queue</span></a><span class="special">(</span><span class="identifier">size_type</span><span class="special">)</span><span class="special">;</span>
+  <span class="keyword">template</span><span class="special">&lt;</span><span class="keyword">typename</span> Enabler <span class="special">=</span> <span class="identifier">std</span><span class="special">::</span><span class="identifier">enable_if</span><span class="special">&lt;</span> <span class="special">!</span><span class="identifier">has_capacity</span> <span class="special">&gt;</span> <span class="special">&gt;</span> 
+    <a class="link" href="classboost_1_1lockfree_1_1bounded__ticket__queue.html#doxygen.classboost_1_1lockfree_1_1bounded__ticket__queue_1a0eebd15728e232ec40add6f7590ba0d1"><span class="identifier">bounded_ticket_queue</span></a><span class="special">(</span><span class="identifier">size_type</span><span class="special">,</span> <span class="identifier">allocator</span> <span class="keyword">const</span> <span class="special">&amp;</span><span class="special">)</span><span class="special">;</span>
+  <a class="link" href="classboost_1_1lockfree_1_1bounded__ticket__queue.html#doxygen.classboost_1_1lockfree_1_1bounded__ticket__queue_1a33700792a77978bd36867cd661406445"><span class="identifier">bounded_ticket_queue</span></a><span class="special">(</span><span class="keyword">const</span> <a class="link" href="classboost_1_1lockfree_1_1bounded__ticket__queue.html" title="Class template bounded_ticket_queue">bounded_ticket_queue</a> <span class="special">&amp;</span><span class="special">)</span> <span class="special">=</span> <span class="keyword">delete</span><span class="special">;</span>
+  <a class="link" href="classboost_1_1lockfree_1_1bounded__ticket__queue.html" title="Class template bounded_ticket_queue">bounded_ticket_queue</a> <span class="special">&amp;</span> <a class="link" href="classboost_1_1lockfree_1_1bounded__ticket__queue.html#doxygen.classboost_1_1lockfree_1_1bounded__ticket__queue_1ae0dd057d7c8f079c0dbd36914feeaf9b"><span class="keyword">operator</span><span class="special">=</span></a><span class="special">(</span><span class="keyword">const</span> <a class="link" href="classboost_1_1lockfree_1_1bounded__ticket__queue.html" title="Class template bounded_ticket_queue">bounded_ticket_queue</a> <span class="special">&amp;</span><span class="special">)</span> <span class="special">=</span> <span class="keyword">delete</span><span class="special">;</span>
+  <a class="link" href="classboost_1_1lockfree_1_1bounded__ticket__queue.html#doxygen.classboost_1_1lockfree_1_1bounded__ticket__queue_1aa0b003ca7811dee4b7d91368af06a211"><span class="identifier">bounded_ticket_queue</span></a><span class="special">(</span><a class="link" href="classboost_1_1lockfree_1_1bounded__ticket__queue.html" title="Class template bounded_ticket_queue">bounded_ticket_queue</a> <span class="special">&amp;&amp;</span><span class="special">)</span> <span class="special">=</span> <span class="keyword">delete</span><span class="special">;</span>
+  <a class="link" href="classboost_1_1lockfree_1_1bounded__ticket__queue.html" title="Class template bounded_ticket_queue">bounded_ticket_queue</a> <span class="special">&amp;</span> <a class="link" href="classboost_1_1lockfree_1_1bounded__ticket__queue.html#doxygen.classboost_1_1lockfree_1_1bounded__ticket__queue_1a438a7ff47b1db3b0f78c31cc8f6513f7"><span class="keyword">operator</span><span class="special">=</span></a><span class="special">(</span><a class="link" href="classboost_1_1lockfree_1_1bounded__ticket__queue.html" title="Class template bounded_ticket_queue">bounded_ticket_queue</a> <span class="special">&amp;&amp;</span><span class="special">)</span> <span class="special">=</span> <span class="keyword">delete</span><span class="special">;</span>
+  <a class="link" href="classboost_1_1lockfree_1_1bounded__ticket__queue.html#doxygen.classboost_1_1lockfree_1_1bounded__ticket__queue_1ac43ae6b5cdd16b6d59cf862f937b2676"><span class="special">~</span><span class="identifier">bounded_ticket_queue</span></a><span class="special">(</span><span class="special">)</span><span class="special">;</span>
+  <span class="keyword">bool</span> <a class="link" href="classboost_1_1lockfree_1_1bounded__ticket__queue.html#doxygen.classboost_1_1lockfree_1_1bounded__ticket__queue_1ae3b7b4917acc790223b47be729c4c72f"><span class="identifier">empty</span></a><span class="special">(</span><span class="special">)</span> <span class="keyword">const</span><span class="special">;</span>
+  <span class="identifier">size_type</span> <a class="link" href="classboost_1_1lockfree_1_1bounded__ticket__queue.html#doxygen.classboost_1_1lockfree_1_1bounded__ticket__queue_1a63e28b942237c2299062e53508ce7657"><span class="identifier">capacity</span></a><span class="special">(</span><span class="special">)</span> <span class="keyword">const</span><span class="special">;</span>
+  <span class="keyword">bool</span> <a class="link" href="classboost_1_1lockfree_1_1bounded__ticket__queue.html#doxygen.classboost_1_1lockfree_1_1bounded__ticket__queue_1a6045b8bb5ff07cdc67bcb3650213aba6"><span class="identifier">push</span></a><span class="special">(</span><span class="keyword">const</span> <span class="identifier">T</span> <span class="special">&amp;</span><span class="special">)</span><span class="special">;</span>
+  <span class="keyword">bool</span> <a class="link" href="classboost_1_1lockfree_1_1bounded__ticket__queue.html#doxygen.classboost_1_1lockfree_1_1bounded__ticket__queue_1af72f04cac853ad34fd5e4f82a6e796bf"><span class="identifier">push</span></a><span class="special">(</span><span class="identifier">T</span> <span class="special">&amp;&amp;</span><span class="special">)</span><span class="special">;</span>
+  <span class="keyword">bool</span> <a class="link" href="classboost_1_1lockfree_1_1bounded__ticket__queue.html#doxygen.classboost_1_1lockfree_1_1bounded__ticket__queue_1a7a68516db22517646db5bf4a8915fe6a"><span class="identifier">pop</span></a><span class="special">(</span><span class="identifier">T</span> <span class="special">&amp;</span><span class="special">)</span><span class="special">;</span>
+  <span class="keyword">template</span><span class="special">&lt;</span><span class="keyword">typename</span> U<span class="special">,</span> 
+           <span class="keyword">typename</span> Enabler <span class="special">=</span> <span class="keyword">typename</span> <span class="identifier">std</span><span class="special">::</span><span class="identifier">enable_if</span><span class="special">&lt;</span> <span class="identifier">std</span><span class="special">::</span><span class="identifier">is_constructible</span><span class="special">&lt;</span> <span class="identifier">U</span><span class="special">,</span> <span class="identifier">T</span><span class="special">&amp;&amp;</span> <span class="special">&gt;</span><span class="special">::</span><span class="identifier">value</span> <span class="special">&gt;</span><span class="special">::</span><span class="identifier">type</span><span class="special">&gt;</span> 
+    <span class="keyword">bool</span> <a class="link" href="classboost_1_1lockfree_1_1bounded__ticket__queue.html#doxygen.classboost_1_1lockfree_1_1bounded__ticket__queue_1ac0bb176334e57ef5c56bf2a62e47e796"><span class="identifier">pop</span></a><span class="special">(</span><span class="identifier">U</span> <span class="special">&amp;</span><span class="special">)</span><span class="special">;</span>
+  <span class="identifier">std</span><span class="special">::</span><span class="identifier">optional</span><span class="special">&lt;</span> <span class="identifier">T</span> <span class="special">&gt;</span> <a class="link" href="classboost_1_1lockfree_1_1bounded__ticket__queue.html#doxygen.classboost_1_1lockfree_1_1bounded__ticket__queue_1a3a5e9bfda83b8ff11c8986bcb825e789"><span class="identifier">pop</span></a><span class="special">(</span><span class="identifier">uses_optional_t</span><span class="special">)</span><span class="special">;</span>
+  <span class="keyword">template</span><span class="special">&lt;</span><span class="keyword">typename</span> U<span class="special">&gt;</span> <span class="identifier">std</span><span class="special">::</span><span class="identifier">optional</span><span class="special">&lt;</span> <span class="identifier">U</span> <span class="special">&gt;</span> <a class="link" href="classboost_1_1lockfree_1_1bounded__ticket__queue.html#doxygen.classboost_1_1lockfree_1_1bounded__ticket__queue_1a4f082f9f162ffb81a025760368b2f68a"><span class="identifier">pop</span></a><span class="special">(</span><span class="identifier">uses_optional_t</span><span class="special">)</span><span class="special">;</span>
+  <span class="keyword">template</span><span class="special">&lt;</span><span class="keyword">typename</span> Functor<span class="special">&gt;</span> <span class="keyword">bool</span> <a class="link" href="classboost_1_1lockfree_1_1bounded__ticket__queue.html#doxygen.classboost_1_1lockfree_1_1bounded__ticket__queue_1a23335b2c628a95fb6a3ddbd24acbac42"><span class="identifier">consume_one</span></a><span class="special">(</span><span class="identifier">Functor</span> <span class="special">&amp;&amp;</span><span class="special">)</span><span class="special">;</span>
+  <span class="keyword">template</span><span class="special">&lt;</span><span class="keyword">typename</span> Functor<span class="special">&gt;</span> <span class="identifier">size_t</span> <a class="link" href="classboost_1_1lockfree_1_1bounded__ticket__queue.html#doxygen.classboost_1_1lockfree_1_1bounded__ticket__queue_1a1307a94451db4f5da416f70353a549a9"><span class="identifier">consume_all</span></a><span class="special">(</span><span class="identifier">Functor</span> <span class="special">&amp;&amp;</span><span class="special">)</span><span class="special">;</span>
+<span class="special">}</span><span class="special">;</span></pre></div>
+<div class="refsect1">
+<a name="id-1.3.20.6.2.3.4"></a><h2>Description</h2>
+<p>Bounded ticket queue based on Dmitry Vyukov's bounded MPMC queue (the "Dyukov turnstile") (<a href="https://www.1024cores.net/home/lock-free-algorithms/queues/bounded-mpmc-queue" target="_top">reference</a>).</p>
+<p>The queue uses a fixed-size ring buffer of cells, each protected by a monotonically increasing ticket (sequence number). Producers and consumers coordinate solely by advancing this ticket.</p>
+<p>The data structure is linearizable.</p>
+<p><b>Caveats. </b></p>
+<div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; ">
+<li class="listitem"><p><span class="bold"><strong>Multi-producer push is not lock-free.</strong></span> A concurrent producer that has claimed a slot via CAS but is then suspended can block all other producers once the ring buffer wraps around to that slot. In practice preemption is brief, but hard real-time systems should prefer a single-producer configuration.</p></li>
+<li class="listitem"><p><span class="bold"><strong>Multi-consumer pop is not lock-free.</strong></span> Symmetric stall risk as multi-producer push. Prefer <code class="computeroutput"><a class="link" href="structboost_1_1lockfree_1_1single__consumer.html" title="Struct template single_consumer">single_consumer</a>&lt;true&gt;</code> for hard real-time.</p></li>
+<li class="listitem"><p><span class="bold"><strong>Unfairness.</strong></span> The CAS-based slot reservation provides no FIFO or fairness guarantee.</p></li>
+</ul></div>
+<p>
+</p>
+<p>
+</p>
+<p><b>Policies. </b></p>
+<div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; ">
+<li class="listitem"><p><a class="link" href="structboost_1_1lockfree_1_1capacity.html" title="Struct template capacity">boost::lockfree::capacity</a> (optional):<br>
+ Sets the queue capacity at compile time. Implies a static storage buffer and precludes specifying an allocator.</p></li>
+<li class="listitem"><p><a class="link" href="structboost_1_1lockfree_1_1allocator.html" title="Struct template allocator">boost::lockfree::allocator</a> (default <code class="computeroutput">std::allocator&lt;void&gt;</code>).<br>
+ Allocator used for the cell storage. Only valid when the capacity is specified at run time.</p></li>
+<li class="listitem"><p><a class="link" href="structboost_1_1lockfree_1_1single__producer.html" title="Struct template single_producer">boost::lockfree::single_producer</a> (default <code class="computeroutput">false</code>):<br>
+ If true, only one thread calls push. Push becomes wait-free.</p></li>
+<li class="listitem"><p><a class="link" href="structboost_1_1lockfree_1_1single__consumer.html" title="Struct template single_consumer">boost::lockfree::single_consumer</a> (default <code class="computeroutput">false</code>):<br>
+ If true, only one thread calls pop. Pop becomes wait-free.</p></li>
+</ul></div>
+<p>
+</p>
+<p>
+</p>
+<p><b>Requirements. </b></p>
+<div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; ">
+<li class="listitem"><p>T must be copy- or move-constructible, depending on which <code class="computeroutput">push</code> overload is used.</p></li>
+<li class="listitem"><p>T must be move-constructible and move-assignable. </p></li>
+</ul></div>
+<p>
+</p>
+<p>
+</p>
+<div class="refsect2">
+<a name="id-1.3.20.6.2.3.4.6"></a><h3>
+<a name="id-1_3_20_6_1_1_1_1_6-bb"></a><code class="computeroutput">bounded_ticket_queue</code> public member functions</h3>
+<div class="orderedlist"><ol class="orderedlist" type="1">
+<li class="listitem">
+<pre class="literallayout"><span class="keyword">bool</span> <a name="doxygen.classboost_1_1lockfree_1_1bounded__ticket__queue_1a31ce5cad97208a59311619edad984f6a"></a><span class="identifier">is_lock_free</span><span class="special">(</span><span class="special">)</span> <span class="keyword">const</span><span class="special">;</span></pre>
+<p>
+With single-producer and single-consumer the queue is wait-free (no CAS used). For multi-consumer or multi-producer configurations only the atomic positions used with CAS are checked. </p>
+<div class="variablelist"><table border="0" class="variablelist compact">
+<colgroup>
+<col align="left" valign="top">
+<col>
+</colgroup>
+<tbody><tr>
+<td><p><span class="term">Returns:</span></p></td>
+<td><p>true if the implementation is lock-free.</p></td>
+</tr></tbody>
+</table></div>
+</li>
+<li class="listitem">
+<pre class="literallayout"><a name="doxygen.classboost_1_1lockfree_1_1bounded__ticket__queue_1a153562d5d2fe97be2f2db7aae7d1a51c"></a><span class="identifier">bounded_ticket_queue</span><span class="special">(</span><span class="special">)</span><span class="special">;</span></pre>
+<p>Construct a queue with compile-time capacity.</p>
+<p>Storage is allocated in a static buffer; no heap allocation is performed.</p>
+<p>
+</p>
+<div class="variablelist"><table border="0" class="variablelist compact">
+<colgroup>
+<col align="left" valign="top">
+<col>
+</colgroup>
+<tbody><tr>
+<td><p><span class="term">Requires:</span></p></td>
+<td><p>Must specify a <code class="computeroutput">capacity&lt;&gt;</code> argument &gt;= 2. </p></td>
+</tr></tbody>
+</table></div>
+</li>
+<li class="listitem">
+<pre class="literallayout"><span class="keyword">template</span><span class="special">&lt;</span><span class="keyword">typename</span> Enabler <span class="special">=</span> <span class="identifier">std</span><span class="special">::</span><span class="identifier">enable_if</span><span class="special">&lt;</span> <span class="special">!</span><span class="identifier">has_capacity</span> <span class="special">&gt;</span> <span class="special">&gt;</span> 
+  <span class="keyword">explicit</span> <a name="doxygen.classboost_1_1lockfree_1_1bounded__ticket__queue_1a621f6d1d31a9e14cf20c5a9dde884f18"></a><span class="identifier">bounded_ticket_queue</span><span class="special">(</span><span class="identifier">size_type</span> n<span class="special">)</span><span class="special">;</span></pre>
+<p>Construct a queue with runtime capacity.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0" class="variablelist compact">
+<colgroup>
+<col align="left" valign="top">
+<col>
+</colgroup>
+<tbody>
+<tr>
+<td><p><span class="term">Parameters:</span></p></td>
+<td><div class="variablelist"><table border="0" class="variablelist compact">
+<colgroup>
+<col align="left" valign="top">
+<col>
+</colgroup>
+<tbody><tr>
+<td><p><span class="term"><code class="computeroutput">n</code></span></p></td>
+<td><p>Queue capacity. Must be &gt;= 2. Not required to be a power of two, but power-of-two sizes use a fast masking path.</p></td>
+</tr></tbody>
+</table></div></td>
+</tr>
+<tr>
+<td><p><span class="term">Requires:</span></p></td>
+<td><p>Must <span class="bold"><strong>not</strong></span> specify a <code class="computeroutput">capacity&lt;&gt;</code> argument. </p></td>
+</tr>
+</tbody>
+</table></div>
+</li>
+<li class="listitem">
+<pre class="literallayout"><span class="keyword">template</span><span class="special">&lt;</span><span class="keyword">typename</span> Enabler <span class="special">=</span> <span class="identifier">std</span><span class="special">::</span><span class="identifier">enable_if</span><span class="special">&lt;</span> <span class="special">!</span><span class="identifier">has_capacity</span> <span class="special">&gt;</span> <span class="special">&gt;</span> 
+  <a name="doxygen.classboost_1_1lockfree_1_1bounded__ticket__queue_1a0eebd15728e232ec40add6f7590ba0d1"></a><span class="identifier">bounded_ticket_queue</span><span class="special">(</span><span class="identifier">size_type</span> n<span class="special">,</span> <span class="identifier">allocator</span> <span class="keyword">const</span> <span class="special">&amp;</span> alloc<span class="special">)</span><span class="special">;</span></pre>
+<p>Construct a queue with runtime capacity and custom allocator.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0" class="variablelist compact">
+<colgroup>
+<col align="left" valign="top">
+<col>
+</colgroup>
+<tbody>
+<tr>
+<td><p><span class="term">Parameters:</span></p></td>
+<td><div class="variablelist"><table border="0" class="variablelist compact">
+<colgroup>
+<col align="left" valign="top">
+<col>
+</colgroup>
+<tbody>
+<tr>
+<td><p><span class="term"><code class="computeroutput">n</code></span></p></td>
+<td><p>Queue capacity. Must be &gt;= 2. </p></td>
+</tr>
+<tr>
+<td><p><span class="term"><code class="computeroutput">alloc</code></span></p></td>
+<td><p>Allocator used for the cell storage. Its <code class="computeroutput">value_type</code> is rebound to <code class="computeroutput">cell</code>.</p></td>
+</tr>
+</tbody>
+</table></div></td>
+</tr>
+<tr>
+<td><p><span class="term">Requires:</span></p></td>
+<td><p>Must <span class="bold"><strong>not</strong></span> specify a <code class="computeroutput">capacity&lt;&gt;</code> argument. </p></td>
+</tr>
+</tbody>
+</table></div>
+</li>
+<li class="listitem"><pre class="literallayout"><a name="doxygen.classboost_1_1lockfree_1_1bounded__ticket__queue_1a33700792a77978bd36867cd661406445"></a><span class="identifier">bounded_ticket_queue</span><span class="special">(</span><span class="keyword">const</span> <a class="link" href="classboost_1_1lockfree_1_1bounded__ticket__queue.html" title="Class template bounded_ticket_queue">bounded_ticket_queue</a> <span class="special">&amp;</span><span class="special">)</span> <span class="special">=</span> <span class="keyword">delete</span><span class="special">;</span></pre></li>
+<li class="listitem"><pre class="literallayout"><a class="link" href="classboost_1_1lockfree_1_1bounded__ticket__queue.html" title="Class template bounded_ticket_queue">bounded_ticket_queue</a> <span class="special">&amp;</span> <a name="doxygen.classboost_1_1lockfree_1_1bounded__ticket__queue_1ae0dd057d7c8f079c0dbd36914feeaf9b"></a><span class="keyword">operator</span><span class="special">=</span><span class="special">(</span><span class="keyword">const</span> <a class="link" href="classboost_1_1lockfree_1_1bounded__ticket__queue.html" title="Class template bounded_ticket_queue">bounded_ticket_queue</a> <span class="special">&amp;</span><span class="special">)</span> <span class="special">=</span> <span class="keyword">delete</span><span class="special">;</span></pre></li>
+<li class="listitem"><pre class="literallayout"><a name="doxygen.classboost_1_1lockfree_1_1bounded__ticket__queue_1aa0b003ca7811dee4b7d91368af06a211"></a><span class="identifier">bounded_ticket_queue</span><span class="special">(</span><a class="link" href="classboost_1_1lockfree_1_1bounded__ticket__queue.html" title="Class template bounded_ticket_queue">bounded_ticket_queue</a> <span class="special">&amp;&amp;</span><span class="special">)</span> <span class="special">=</span> <span class="keyword">delete</span><span class="special">;</span></pre></li>
+<li class="listitem"><pre class="literallayout"><a class="link" href="classboost_1_1lockfree_1_1bounded__ticket__queue.html" title="Class template bounded_ticket_queue">bounded_ticket_queue</a> <span class="special">&amp;</span> <a name="doxygen.classboost_1_1lockfree_1_1bounded__ticket__queue_1a438a7ff47b1db3b0f78c31cc8f6513f7"></a><span class="keyword">operator</span><span class="special">=</span><span class="special">(</span><a class="link" href="classboost_1_1lockfree_1_1bounded__ticket__queue.html" title="Class template bounded_ticket_queue">bounded_ticket_queue</a> <span class="special">&amp;&amp;</span><span class="special">)</span> <span class="special">=</span> <span class="keyword">delete</span><span class="special">;</span></pre></li>
+<li class="listitem">
+<pre class="literallayout"><a name="doxygen.classboost_1_1lockfree_1_1bounded__ticket__queue_1ac43ae6b5cdd16b6d59cf862f937b2676"></a><span class="special">~</span><span class="identifier">bounded_ticket_queue</span><span class="special">(</span><span class="special">)</span><span class="special">;</span></pre>
+<p>Destroys the queue. </p>
+</li>
+<li class="listitem">
+<pre class="literallayout"><span class="keyword">bool</span> <a name="doxygen.classboost_1_1lockfree_1_1bounded__ticket__queue_1ae3b7b4917acc790223b47be729c4c72f"></a><span class="identifier">empty</span><span class="special">(</span><span class="special">)</span> <span class="keyword">const</span><span class="special">;</span></pre>
+<p>Check whether the queue is empty.</p>
+<p>
+</p>
+<div class="note"><table border="0" summary="Note">
+<tr>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[Note]" src="../../../doc/src/images/note.png"></td>
+<th align="left">Note</th>
+</tr>
+<tr><td align="left" valign="top"><p>The result is only accurate when no other thread modifies the queue concurrently. </p></td></tr>
+</table></div>
+<p>
+</p>
+<div class="variablelist"><table border="0" class="variablelist compact">
+<colgroup>
+<col align="left" valign="top">
+<col>
+</colgroup>
+<tbody><tr>
+<td><p><span class="term">Returns:</span></p></td>
+<td><p>true if the queue is empty, false otherwise.</p></td>
+</tr></tbody>
+</table></div>
+</li>
+<li class="listitem">
+<pre class="literallayout"><span class="identifier">size_type</span> <a name="doxygen.classboost_1_1lockfree_1_1bounded__ticket__queue_1a63e28b942237c2299062e53508ce7657"></a><span class="identifier">capacity</span><span class="special">(</span><span class="special">)</span> <span class="keyword">const</span><span class="special">;</span></pre>
+<p>
+</p>
+<div class="variablelist"><table border="0" class="variablelist compact">
+<colgroup>
+<col align="left" valign="top">
+<col>
+</colgroup>
+<tbody><tr>
+<td><p><span class="term">Returns:</span></p></td>
+<td><p>the capacity of the queue. </p></td>
+</tr></tbody>
+</table></div>
+</li>
+<li class="listitem">
+<pre class="literallayout"><span class="keyword">bool</span> <a name="doxygen.classboost_1_1lockfree_1_1bounded__ticket__queue_1a6045b8bb5ff07cdc67bcb3650213aba6"></a><span class="identifier">push</span><span class="special">(</span><span class="keyword">const</span> <span class="identifier">T</span> <span class="special">&amp;</span> t<span class="special">)</span><span class="special">;</span></pre>
+<p>Pushes a value to the queue.</p>
+<p>
+</p>
+<div class="note"><table border="0" summary="Note">
+<tr>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[Note]" src="../../../doc/src/images/note.png"></td>
+<th align="left">Note</th>
+</tr>
+<tr><td align="left" valign="top"><p>Thread-safe. Multiple producers may call push concurrently. Never allocates memory. </p></td></tr>
+</table></div>
+<p>
+</p>
+<div class="variablelist"><table border="0" class="variablelist compact">
+<colgroup>
+<col align="left" valign="top">
+<col>
+</colgroup>
+<tbody><tr>
+<td><p><span class="term">Returns:</span></p></td>
+<td><p>true if the value was pushed, false if the queue is full.</p></td>
+</tr></tbody>
+</table></div>
+</li>
+<li class="listitem"><pre class="literallayout"><span class="keyword">bool</span> <a name="doxygen.classboost_1_1lockfree_1_1bounded__ticket__queue_1af72f04cac853ad34fd5e4f82a6e796bf"></a><span class="identifier">push</span><span class="special">(</span><span class="identifier">T</span> <span class="special">&amp;&amp;</span> t<span class="special">)</span><span class="special">;</span></pre></li>
+<li class="listitem">
+<pre class="literallayout"><span class="keyword">bool</span> <a name="doxygen.classboost_1_1lockfree_1_1bounded__ticket__queue_1a7a68516db22517646db5bf4a8915fe6a"></a><span class="identifier">pop</span><span class="special">(</span><span class="identifier">T</span> <span class="special">&amp;</span> ret<span class="special">)</span><span class="special">;</span></pre>
+<p>Pops an element from the queue.</p>
+<p>
+</p>
+<div class="variablelist"><table border="0" class="variablelist compact">
+<colgroup>
+<col align="left" valign="top">
+<col>
+</colgroup>
+<tbody><tr>
+<td><p><span class="term">Returns:</span></p></td>
+<td><p>true if an element was popped, false if the queue was empty. </p></td>
+</tr></tbody>
+</table></div>
+</li>
+<li class="listitem">
+<pre class="literallayout"><span class="keyword">template</span><span class="special">&lt;</span><span class="keyword">typename</span> U<span class="special">,</span> 
+         <span class="keyword">typename</span> Enabler <span class="special">=</span> <span class="keyword">typename</span> <span class="identifier">std</span><span class="special">::</span><span class="identifier">enable_if</span><span class="special">&lt;</span> <span class="identifier">std</span><span class="special">::</span><span class="identifier">is_constructible</span><span class="special">&lt;</span> <span class="identifier">U</span><span class="special">,</span> <span class="identifier">T</span><span class="special">&amp;&amp;</span> <span class="special">&gt;</span><span class="special">::</span><span class="identifier">value</span> <span class="special">&gt;</span><span class="special">::</span><span class="identifier">type</span><span class="special">&gt;</span> 
+  <span class="keyword">bool</span> <a name="doxygen.classboost_1_1lockfree_1_1bounded__ticket__queue_1ac0bb176334e57ef5c56bf2a62e47e796"></a><span class="identifier">pop</span><span class="special">(</span><span class="identifier">U</span> <span class="special">&amp;</span> ret<span class="special">)</span><span class="special">;</span></pre>
+<p>Pops an element from the queue.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0" class="variablelist compact">
+<colgroup>
+<col align="left" valign="top">
+<col>
+</colgroup>
+<tbody>
+<tr>
+<td><p><span class="term">Template Parameters:</span></p></td>
+<td><div class="variablelist"><table border="0" class="variablelist compact">
+<colgroup>
+<col align="left" valign="top">
+<col>
+</colgroup>
+<tbody><tr>
+<td><p><span class="term"><code class="computeroutput">U</code></span></p></td>
+<td><p>type to receive the popped value; <code class="computeroutput">U</code> must be constructible from <code class="computeroutput">T&amp;&amp;</code> and assignable from <code class="computeroutput">U</code>. </p></td>
+</tr></tbody>
+</table></div></td>
+</tr>
+<tr>
+<td><p><span class="term">Returns:</span></p></td>
+<td><p>true if an element was popped, false if the queue was empty. </p></td>
+</tr>
+</tbody>
+</table></div>
+</li>
+<li class="listitem">
+<pre class="literallayout"><span class="identifier">std</span><span class="special">::</span><span class="identifier">optional</span><span class="special">&lt;</span> <span class="identifier">T</span> <span class="special">&gt;</span> <a name="doxygen.classboost_1_1lockfree_1_1bounded__ticket__queue_1a3a5e9bfda83b8ff11c8986bcb825e789"></a><span class="identifier">pop</span><span class="special">(</span><span class="identifier">uses_optional_t</span><span class="special">)</span><span class="special">;</span></pre>
+<p>Pops an element, returning a std::optional&lt;T&gt;.</p>
+<p>
+</p>
+<div class="variablelist"><table border="0" class="variablelist compact">
+<colgroup>
+<col align="left" valign="top">
+<col>
+</colgroup>
+<tbody><tr>
+<td><p><span class="term">Returns:</span></p></td>
+<td><p>std::optional containing the value on success, std::nullopt if the queue is empty. </p></td>
+</tr></tbody>
+</table></div>
+</li>
+<li class="listitem">
+<pre class="literallayout"><span class="keyword">template</span><span class="special">&lt;</span><span class="keyword">typename</span> U<span class="special">&gt;</span> <span class="identifier">std</span><span class="special">::</span><span class="identifier">optional</span><span class="special">&lt;</span> <span class="identifier">U</span> <span class="special">&gt;</span> <a name="doxygen.classboost_1_1lockfree_1_1bounded__ticket__queue_1a4f082f9f162ffb81a025760368b2f68a"></a><span class="identifier">pop</span><span class="special">(</span><span class="identifier">uses_optional_t</span><span class="special">)</span><span class="special">;</span></pre>
+<p>Pops an element, returning a std::optional.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0" class="variablelist compact">
+<colgroup>
+<col align="left" valign="top">
+<col>
+</colgroup>
+<tbody>
+<tr>
+<td><p><span class="term">Template Parameters:</span></p></td>
+<td><div class="variablelist"><table border="0" class="variablelist compact">
+<colgroup>
+<col align="left" valign="top">
+<col>
+</colgroup>
+<tbody><tr>
+<td><p><span class="term"><code class="computeroutput">U</code></span></p></td>
+<td><p>type to receive the popped value; T must be convertible to U. </p></td>
+</tr></tbody>
+</table></div></td>
+</tr>
+<tr>
+<td><p><span class="term">Returns:</span></p></td>
+<td><p>std::optional&lt;U&gt; containing the value on success, std::nullopt if the queue is empty. </p></td>
+</tr>
+</tbody>
+</table></div>
+</li>
+<li class="listitem">
+<pre class="literallayout"><span class="keyword">template</span><span class="special">&lt;</span><span class="keyword">typename</span> Functor<span class="special">&gt;</span> <span class="keyword">bool</span> <a name="doxygen.classboost_1_1lockfree_1_1bounded__ticket__queue_1a23335b2c628a95fb6a3ddbd24acbac42"></a><span class="identifier">consume_one</span><span class="special">(</span><span class="identifier">Functor</span> <span class="special">&amp;&amp;</span> f<span class="special">)</span><span class="special">;</span></pre>
+<p>Consumes one element via a functor.</p>
+<p>Moves one element out of the slot, passes the resulting rvalue to the functor, and releases the slot for reuse once the functor returns.</p>
+<p>
+</p>
+<div class="variablelist"><table border="0" class="variablelist compact">
+<colgroup>
+<col align="left" valign="top">
+<col>
+</colgroup>
+<tbody><tr>
+<td><p><span class="term">Returns:</span></p></td>
+<td><p>true if an element was consumed. </p></td>
+</tr></tbody>
+</table></div>
+</li>
+<li class="listitem">
+<pre class="literallayout"><span class="keyword">template</span><span class="special">&lt;</span><span class="keyword">typename</span> Functor<span class="special">&gt;</span> <span class="identifier">size_t</span> <a name="doxygen.classboost_1_1lockfree_1_1bounded__ticket__queue_1a1307a94451db4f5da416f70353a549a9"></a><span class="identifier">consume_all</span><span class="special">(</span><span class="identifier">Functor</span> <span class="special">&amp;&amp;</span> f<span class="special">)</span><span class="special">;</span></pre>
+<p>Consumes all elements via a functor.</p>
+<p>Sequentially pops all elements and applies the functor to each.</p>
+<p>
+</p>
+<div class="variablelist"><table border="0" class="variablelist compact">
+<colgroup>
+<col align="left" valign="top">
+<col>
+</colgroup>
+<tbody><tr>
+<td><p><span class="term">Returns:</span></p></td>
+<td><p>the number of elements consumed. </p></td>
+</tr></tbody>
+</table></div>
+</li>
+</ol></div>
+</div>
+</div>
+</div>
+<div class="copyright-footer">Copyright © 2008-2026 Tim
+      Blechmann<p>
+        Distributed under the Boost Software License, Version 1.0. (See accompanying
+        file LICENSE_1_0.txt or copy at <a href="http://www.boost.org/LICENSE_1_0.txt" target="_top">http://www.boost.org/LICENSE_1_0.txt</a>)
+      </p>
+</div>
+<hr>
+<div class="spirit-nav">
+<a accesskey="p" href="../lockfree/reference.html"><img src="../../../doc/src/images/prev.png" alt="Prev"></a><a accesskey="u" href="../lockfree/reference.html#doxygen.bounded__ticket__queue_8hpp"><img src="../../../doc/src/images/up.png" alt="Up"></a><a accesskey="h" href="../index.html"><img src="../../../doc/src/images/home.png" alt="Home"></a><a accesskey="n" href="classboost_1_1lockfree_1_1mpsc__weak__queue.html"><img src="../../../doc/src/images/next.png" alt="Next"></a>
+</div>
+</body>
+</html>

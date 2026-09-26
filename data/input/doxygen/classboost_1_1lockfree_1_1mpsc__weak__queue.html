@@ -1,0 +1,754 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Class template mpsc_weak_queue</title>
+<link rel="stylesheet" href="../../../doc/src/boostbook.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.79.1">
+<link rel="home" href="../index.html" title="The Boost C++ Libraries BoostBook Documentation Subset">
+<link rel="up" href="../lockfree/reference.html#doxygen.mpsc__weak__queue_8hpp" title="Header &lt;boost/lockfree/mpsc_weak_queue.hpp&gt;">
+<link rel="prev" href="classboost_1_1lockfree_1_1bounded__ticket__queue.html" title="Class template bounded_ticket_queue">
+<link rel="next" href="structboost_1_1lockfree_1_1allocator.html" title="Struct template allocator">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table cellpadding="2" width="100%"><tr>
+<td valign="top"><img alt="Boost C++ Libraries" width="277" height="86" src="../../../boost.png"></td>
+<td align="center"><a href="../../../index.html">Home</a></td>
+<td align="center"><a href="../../../libs/libraries.htm">Libraries</a></td>
+<td align="center"><a href="http://www.boost.org/users/people.html">People</a></td>
+<td align="center"><a href="http://www.boost.org/users/faq.html">FAQ</a></td>
+<td align="center"><a href="../../../more/index.htm">More</a></td>
+</tr></table>
+<hr>
+<div class="spirit-nav">
+<a accesskey="p" href="classboost_1_1lockfree_1_1bounded__ticket__queue.html"><img src="../../../doc/src/images/prev.png" alt="Prev"></a><a accesskey="u" href="../lockfree/reference.html#doxygen.mpsc__weak__queue_8hpp"><img src="../../../doc/src/images/up.png" alt="Up"></a><a accesskey="h" href="../index.html"><img src="../../../doc/src/images/home.png" alt="Home"></a><a accesskey="n" href="structboost_1_1lockfree_1_1allocator.html"><img src="../../../doc/src/images/next.png" alt="Next"></a>
+</div>
+<div class="refentry">
+<a name="doxygen.classboost_1_1lockfree_1_1mpsc__weak__queue"></a><div class="titlepage"></div>
+<div class="refnamediv">
+<h2><span class="refentrytitle">Class template mpsc_weak_queue</span></h2>
+<p>boost::lockfree::mpsc_weak_queue</p>
+</div>
+<h2 class="refsynopsisdiv-title">Synopsis</h2>
+<div class="refsynopsisdiv"><pre class="synopsis"><span class="comment">// In header: &lt;<a class="link" href="../lockfree/reference.html#doxygen.mpsc__weak__queue_8hpp" title="Header &lt;boost/lockfree/mpsc_weak_queue.hpp&gt;">boost/lockfree/mpsc_weak_queue.hpp</a>&gt;
+
+</span><span class="keyword">template</span><span class="special">&lt;</span><span class="keyword">typename</span> T<span class="special">,</span> <span class="keyword">typename</span><span class="special">...</span> Options<span class="special">&gt;</span> 
+<span class="keyword">class</span> <a class="link" href="classboost_1_1lockfree_1_1mpsc__weak__queue.html" title="Class template mpsc_weak_queue">mpsc_weak_queue</a> <span class="special">{</span>
+<span class="keyword">public</span><span class="special">:</span>
+  <span class="comment">// types</span>
+  <span class="keyword">typedef</span> <span class="identifier">T</span>                                 <a name="doxygen.classboost_1_1lockfree_1_1mpsc__weak__queue_1a0d97912add8b060aa18e74df0b916447"></a><span class="identifier">value_type</span><span class="special">;</span>
+  <span class="keyword">typedef</span> <span class="identifier">implementation_defined</span><span class="special">::</span><span class="identifier">allocator</span> <a name="doxygen.classboost_1_1lockfree_1_1mpsc__weak__queue_1a2ae07c534632aaeb3246b9dce6a3ea72"></a><span class="identifier">allocator</span><span class="special">;</span> 
+  <span class="keyword">typedef</span> <span class="identifier">implementation_defined</span><span class="special">::</span><span class="identifier">size_type</span> <a name="doxygen.classboost_1_1lockfree_1_1mpsc__weak__queue_1ab0b3ae4afccb6039b955788ccbec8738"></a><span class="identifier">size_type</span><span class="special">;</span> 
+
+  <span class="comment">// <a class="link" href="classboost_1_1lockfree_1_1mpsc__weak__queue.html#id-1_3_20_6_3_1_1_1_6-bb">public member functions</a></span>
+  <span class="keyword">bool</span> <a class="link" href="classboost_1_1lockfree_1_1mpsc__weak__queue.html#doxygen.classboost_1_1lockfree_1_1mpsc__weak__queue_1aef77c0fdd4ea4325e4f9262758166ace"><span class="identifier">is_lock_free</span></a><span class="special">(</span><span class="special">)</span> <span class="keyword">const</span><span class="special">;</span>
+  <a class="link" href="classboost_1_1lockfree_1_1mpsc__weak__queue.html#doxygen.classboost_1_1lockfree_1_1mpsc__weak__queue_1a66823e71a282f9539548242b8df44df9"><span class="identifier">mpsc_weak_queue</span></a><span class="special">(</span><span class="special">)</span><span class="special">;</span>
+  <span class="keyword">template</span><span class="special">&lt;</span><span class="keyword">typename</span> U<span class="special">,</span> 
+           <span class="keyword">typename</span> Enabler <span class="special">=</span> <span class="identifier">std</span><span class="special">::</span><span class="identifier">enable_if</span><span class="special">&lt;</span> <span class="identifier">has_capacity</span> <span class="special">||</span> <span class="special">!</span><span class="identifier">use_freelist</span> <span class="special">&gt;</span> <span class="special">&gt;</span> 
+    <span class="keyword">explicit</span> <a class="link" href="classboost_1_1lockfree_1_1mpsc__weak__queue.html#doxygen.classboost_1_1lockfree_1_1mpsc__weak__queue_1a16f5e96bc9502dff88b02bba388f2827"><span class="identifier">mpsc_weak_queue</span></a><span class="special">(</span><span class="keyword">typename</span> <span class="identifier">boost</span><span class="special">::</span><span class="identifier">allocator_rebind</span><span class="special">&lt;</span> <span class="identifier">node_allocator</span><span class="special">,</span> <span class="identifier">U</span> <span class="special">&gt;</span><span class="special">::</span><span class="identifier">type</span> <span class="keyword">const</span> <span class="special">&amp;</span><span class="special">)</span><span class="special">;</span>
+  <span class="keyword">template</span><span class="special">&lt;</span><span class="keyword">typename</span> Enabler <span class="special">=</span> <span class="identifier">std</span><span class="special">::</span><span class="identifier">enable_if</span><span class="special">&lt;</span> <span class="identifier">has_capacity</span> <span class="special">||</span> <span class="special">!</span><span class="identifier">use_freelist</span> <span class="special">&gt;</span> <span class="special">&gt;</span> 
+    <span class="keyword">explicit</span> <a class="link" href="classboost_1_1lockfree_1_1mpsc__weak__queue.html#doxygen.classboost_1_1lockfree_1_1mpsc__weak__queue_1a9094aecf9fb7f634d9d0647eee66c198"><span class="identifier">mpsc_weak_queue</span></a><span class="special">(</span><span class="identifier">allocator</span> <span class="keyword">const</span> <span class="special">&amp;</span><span class="special">)</span><span class="special">;</span>
+  <span class="keyword">template</span><span class="special">&lt;</span><span class="keyword">typename</span> Enabler <span class="special">=</span> <span class="identifier">std</span><span class="special">::</span><span class="identifier">enable_if</span><span class="special">&lt;</span> <span class="special">!</span><span class="identifier">has_capacity</span> <span class="special">&amp;&amp;</span> <span class="identifier">use_freelist</span> <span class="special">&gt;</span> <span class="special">&gt;</span> 
+    <span class="keyword">explicit</span> <a class="link" href="classboost_1_1lockfree_1_1mpsc__weak__queue.html#doxygen.classboost_1_1lockfree_1_1mpsc__weak__queue_1ae0907b2fffe31e31cb91c4c658f26580"><span class="identifier">mpsc_weak_queue</span></a><span class="special">(</span><span class="identifier">size_type</span><span class="special">)</span><span class="special">;</span>
+  <span class="keyword">template</span><span class="special">&lt;</span><span class="keyword">typename</span> Enabler <span class="special">=</span> <span class="identifier">std</span><span class="special">::</span><span class="identifier">enable_if</span><span class="special">&lt;</span> <span class="special">!</span><span class="identifier">has_capacity</span> <span class="special">&amp;&amp;</span> <span class="identifier">use_freelist</span> <span class="special">&gt;</span> <span class="special">&gt;</span> 
+    <a class="link" href="classboost_1_1lockfree_1_1mpsc__weak__queue.html#doxygen.classboost_1_1lockfree_1_1mpsc__weak__queue_1a5b673e48b5e1f99090872c5227cf8017"><span class="identifier">mpsc_weak_queue</span></a><span class="special">(</span><span class="identifier">size_type</span><span class="special">,</span> <span class="identifier">allocator</span> <span class="keyword">const</span> <span class="special">&amp;</span><span class="special">)</span><span class="special">;</span>
+  <a class="link" href="classboost_1_1lockfree_1_1mpsc__weak__queue.html#doxygen.classboost_1_1lockfree_1_1mpsc__weak__queue_1a983e12de0f05e3160d205a5139ceb15c"><span class="identifier">mpsc_weak_queue</span></a><span class="special">(</span><span class="keyword">const</span> <a class="link" href="classboost_1_1lockfree_1_1mpsc__weak__queue.html" title="Class template mpsc_weak_queue">mpsc_weak_queue</a> <span class="special">&amp;</span><span class="special">)</span> <span class="special">=</span> <span class="keyword">delete</span><span class="special">;</span>
+  <a class="link" href="classboost_1_1lockfree_1_1mpsc__weak__queue.html" title="Class template mpsc_weak_queue">mpsc_weak_queue</a> <span class="special">&amp;</span> <a class="link" href="classboost_1_1lockfree_1_1mpsc__weak__queue.html#doxygen.classboost_1_1lockfree_1_1mpsc__weak__queue_1a0dc752c9b598212594167e1670a523c3"><span class="keyword">operator</span><span class="special">=</span></a><span class="special">(</span><span class="keyword">const</span> <a class="link" href="classboost_1_1lockfree_1_1mpsc__weak__queue.html" title="Class template mpsc_weak_queue">mpsc_weak_queue</a> <span class="special">&amp;</span><span class="special">)</span> <span class="special">=</span> <span class="keyword">delete</span><span class="special">;</span>
+  <a class="link" href="classboost_1_1lockfree_1_1mpsc__weak__queue.html#doxygen.classboost_1_1lockfree_1_1mpsc__weak__queue_1a1d28e3b9f74efd2f269a406a09f71d64"><span class="identifier">mpsc_weak_queue</span></a><span class="special">(</span><a class="link" href="classboost_1_1lockfree_1_1mpsc__weak__queue.html" title="Class template mpsc_weak_queue">mpsc_weak_queue</a> <span class="special">&amp;&amp;</span><span class="special">)</span> <span class="special">=</span> <span class="keyword">delete</span><span class="special">;</span>
+  <a class="link" href="classboost_1_1lockfree_1_1mpsc__weak__queue.html" title="Class template mpsc_weak_queue">mpsc_weak_queue</a> <span class="special">&amp;</span> <a class="link" href="classboost_1_1lockfree_1_1mpsc__weak__queue.html#doxygen.classboost_1_1lockfree_1_1mpsc__weak__queue_1acf253fce57791318638db9733510ab69"><span class="keyword">operator</span><span class="special">=</span></a><span class="special">(</span><a class="link" href="classboost_1_1lockfree_1_1mpsc__weak__queue.html" title="Class template mpsc_weak_queue">mpsc_weak_queue</a> <span class="special">&amp;&amp;</span><span class="special">)</span> <span class="special">=</span> <span class="keyword">delete</span><span class="special">;</span>
+  <span class="keyword">template</span><span class="special">&lt;</span><span class="keyword">typename</span> Enabler <span class="special">=</span> <span class="identifier">std</span><span class="special">::</span><span class="identifier">enable_if</span><span class="special">&lt;</span> <span class="identifier">can_reserve</span> <span class="special">&gt;</span> <span class="special">&gt;</span> 
+    <span class="keyword">void</span> <a class="link" href="classboost_1_1lockfree_1_1mpsc__weak__queue.html#doxygen.classboost_1_1lockfree_1_1mpsc__weak__queue_1a3d59de8aaa2c80c0b6c02fa8ea0dfe78"><span class="identifier">reserve</span></a><span class="special">(</span><span class="identifier">size_type</span><span class="special">)</span><span class="special">;</span>
+  <span class="keyword">template</span><span class="special">&lt;</span><span class="keyword">typename</span> Enabler <span class="special">=</span> <span class="identifier">std</span><span class="special">::</span><span class="identifier">enable_if</span><span class="special">&lt;</span> <span class="identifier">can_reserve</span> <span class="special">&gt;</span> <span class="special">&gt;</span> 
+    <span class="keyword">void</span> <a class="link" href="classboost_1_1lockfree_1_1mpsc__weak__queue.html#doxygen.classboost_1_1lockfree_1_1mpsc__weak__queue_1a6fffcbe908b3acd891b2dc9855404347"><span class="identifier">reserve_unsafe</span></a><span class="special">(</span><span class="identifier">size_type</span><span class="special">)</span><span class="special">;</span>
+  <a class="link" href="classboost_1_1lockfree_1_1mpsc__weak__queue.html#doxygen.classboost_1_1lockfree_1_1mpsc__weak__queue_1a50fee84104c9a949fba37a353d09efab"><span class="special">~</span><span class="identifier">mpsc_weak_queue</span></a><span class="special">(</span><span class="special">)</span><span class="special">;</span>
+  <span class="keyword">bool</span> <a class="link" href="classboost_1_1lockfree_1_1mpsc__weak__queue.html#doxygen.classboost_1_1lockfree_1_1mpsc__weak__queue_1aa1c84517f529c0474e317e0bc40ec611"><span class="identifier">empty</span></a><span class="special">(</span><span class="special">)</span> <span class="keyword">const</span><span class="special">;</span>
+  <span class="keyword">bool</span> <a class="link" href="classboost_1_1lockfree_1_1mpsc__weak__queue.html#doxygen.classboost_1_1lockfree_1_1mpsc__weak__queue_1a02abbd1cad9f215e351e7dddc949421f"><span class="identifier">push</span></a><span class="special">(</span><span class="keyword">const</span> <span class="identifier">T</span> <span class="special">&amp;</span><span class="special">)</span><span class="special">;</span>
+  <span class="keyword">bool</span> <a class="link" href="classboost_1_1lockfree_1_1mpsc__weak__queue.html#doxygen.classboost_1_1lockfree_1_1mpsc__weak__queue_1aa1f86e1e326cde3e31e6a96d89a74d79"><span class="identifier">push</span></a><span class="special">(</span><span class="identifier">T</span> <span class="special">&amp;&amp;</span><span class="special">)</span><span class="special">;</span>
+  <span class="keyword">template</span><span class="special">&lt;</span><span class="keyword">typename</span> Enabler <span class="special">=</span> <span class="identifier">std</span><span class="special">::</span><span class="identifier">enable_if</span><span class="special">&lt;</span> <span class="identifier">use_freelist</span> <span class="special">&gt;</span> <span class="special">&gt;</span> 
+    <span class="keyword">bool</span> <a class="link" href="classboost_1_1lockfree_1_1mpsc__weak__queue.html#doxygen.classboost_1_1lockfree_1_1mpsc__weak__queue_1ab8c4ef98cf56206fcb7a71ac6f9fb574"><span class="identifier">bounded_push</span></a><span class="special">(</span><span class="keyword">const</span> <span class="identifier">T</span> <span class="special">&amp;</span><span class="special">)</span><span class="special">;</span>
+  <span class="keyword">template</span><span class="special">&lt;</span><span class="keyword">typename</span> Enabler <span class="special">=</span> <span class="identifier">std</span><span class="special">::</span><span class="identifier">enable_if</span><span class="special">&lt;</span> <span class="identifier">use_freelist</span> <span class="special">&gt;</span> <span class="special">&gt;</span> 
+    <span class="keyword">bool</span> <a class="link" href="classboost_1_1lockfree_1_1mpsc__weak__queue.html#doxygen.classboost_1_1lockfree_1_1mpsc__weak__queue_1a2a690d483f9e41a351f2c088fd6a454d"><span class="identifier">bounded_push</span></a><span class="special">(</span><span class="identifier">T</span> <span class="special">&amp;&amp;</span><span class="special">)</span><span class="special">;</span>
+  <span class="keyword">bool</span> <a class="link" href="classboost_1_1lockfree_1_1mpsc__weak__queue.html#doxygen.classboost_1_1lockfree_1_1mpsc__weak__queue_1aaebc4af2712fc27ae1b617d881cd06e2"><span class="identifier">unsynchronized_push</span></a><span class="special">(</span><span class="keyword">const</span> <span class="identifier">T</span> <span class="special">&amp;</span><span class="special">)</span><span class="special">;</span>
+  <span class="keyword">bool</span> <a class="link" href="classboost_1_1lockfree_1_1mpsc__weak__queue.html#doxygen.classboost_1_1lockfree_1_1mpsc__weak__queue_1a73b1b40a1afd81bb88a3e46c779a9153"><span class="identifier">unsynchronized_push</span></a><span class="special">(</span><span class="identifier">T</span> <span class="special">&amp;&amp;</span><span class="special">)</span><span class="special">;</span>
+  <span class="keyword">bool</span> <a class="link" href="classboost_1_1lockfree_1_1mpsc__weak__queue.html#doxygen.classboost_1_1lockfree_1_1mpsc__weak__queue_1ac2f95038ef0b829d80e3e5261c77e085"><span class="identifier">pop</span></a><span class="special">(</span><span class="identifier">T</span> <span class="special">&amp;</span><span class="special">)</span><span class="special">;</span>
+  <span class="keyword">template</span><span class="special">&lt;</span><span class="keyword">typename</span> U<span class="special">,</span> 
+           <span class="keyword">typename</span> Enabler <span class="special">=</span> <span class="identifier">std</span><span class="special">::</span><span class="identifier">enable_if_t</span><span class="special">&lt;</span> <span class="identifier">std</span><span class="special">::</span><span class="identifier">is_constructible</span><span class="special">&lt;</span> <span class="identifier">U</span><span class="special">,</span> <span class="identifier">T</span><span class="special">&amp;&amp;</span> <span class="special">&gt;</span><span class="special">::</span><span class="identifier">value</span> <span class="special">&gt;</span> <span class="special">&gt;</span> 
+    <span class="keyword">bool</span> <a class="link" href="classboost_1_1lockfree_1_1mpsc__weak__queue.html#doxygen.classboost_1_1lockfree_1_1mpsc__weak__queue_1a5cb9635cf316e4e111b182f3b28388d4"><span class="identifier">pop</span></a><span class="special">(</span><span class="identifier">U</span> <span class="special">&amp;</span><span class="special">)</span><span class="special">;</span>
+  <span class="identifier">std</span><span class="special">::</span><span class="identifier">optional</span><span class="special">&lt;</span> <span class="identifier">T</span> <span class="special">&gt;</span> <a class="link" href="classboost_1_1lockfree_1_1mpsc__weak__queue.html#doxygen.classboost_1_1lockfree_1_1mpsc__weak__queue_1ae06e39308b859ca27209cb37a91bbaa5"><span class="identifier">pop</span></a><span class="special">(</span><span class="identifier">uses_optional_t</span><span class="special">)</span><span class="special">;</span>
+  <span class="keyword">template</span><span class="special">&lt;</span><span class="keyword">typename</span> U<span class="special">&gt;</span> <span class="identifier">std</span><span class="special">::</span><span class="identifier">optional</span><span class="special">&lt;</span> <span class="identifier">U</span> <span class="special">&gt;</span> <a class="link" href="classboost_1_1lockfree_1_1mpsc__weak__queue.html#doxygen.classboost_1_1lockfree_1_1mpsc__weak__queue_1a33de8831f5326a45f8316f54ab468144"><span class="identifier">pop</span></a><span class="special">(</span><span class="identifier">uses_optional_t</span><span class="special">)</span><span class="special">;</span>
+  <span class="keyword">bool</span> <a class="link" href="classboost_1_1lockfree_1_1mpsc__weak__queue.html#doxygen.classboost_1_1lockfree_1_1mpsc__weak__queue_1a9a33d45859299cb9af39433ad1428aa0"><span class="identifier">unsynchronized_pop</span></a><span class="special">(</span><span class="identifier">T</span> <span class="special">&amp;</span><span class="special">)</span><span class="special">;</span>
+  <span class="keyword">template</span><span class="special">&lt;</span><span class="keyword">typename</span> U<span class="special">,</span> 
+           <span class="keyword">typename</span> Enabler <span class="special">=</span> <span class="identifier">std</span><span class="special">::</span><span class="identifier">enable_if_t</span><span class="special">&lt;</span> <span class="identifier">std</span><span class="special">::</span><span class="identifier">is_constructible</span><span class="special">&lt;</span> <span class="identifier">U</span><span class="special">,</span> <span class="identifier">T</span><span class="special">&amp;&amp;</span> <span class="special">&gt;</span><span class="special">::</span><span class="identifier">value</span> <span class="special">&gt;</span> <span class="special">&gt;</span> 
+    <span class="keyword">bool</span> <a class="link" href="classboost_1_1lockfree_1_1mpsc__weak__queue.html#doxygen.classboost_1_1lockfree_1_1mpsc__weak__queue_1a8f62273bb5e41673f57bc137262d9baf"><span class="identifier">unsynchronized_pop</span></a><span class="special">(</span><span class="identifier">U</span> <span class="special">&amp;</span><span class="special">)</span><span class="special">;</span>
+  <span class="keyword">template</span><span class="special">&lt;</span><span class="keyword">typename</span> Functor<span class="special">&gt;</span> <span class="keyword">bool</span> <a class="link" href="classboost_1_1lockfree_1_1mpsc__weak__queue.html#doxygen.classboost_1_1lockfree_1_1mpsc__weak__queue_1afc25d68e9dffe4bdeb4ea4e99b191fda"><span class="identifier">consume_one</span></a><span class="special">(</span><span class="identifier">Functor</span> <span class="special">&amp;&amp;</span><span class="special">)</span><span class="special">;</span>
+  <span class="keyword">template</span><span class="special">&lt;</span><span class="keyword">typename</span> Functor<span class="special">&gt;</span> <span class="keyword">bool</span> <a class="link" href="classboost_1_1lockfree_1_1mpsc__weak__queue.html#doxygen.classboost_1_1lockfree_1_1mpsc__weak__queue_1ad7d055441f616652b5dc6db8dead378b"><span class="identifier">unsynchronized_consume_one</span></a><span class="special">(</span><span class="identifier">Functor</span> <span class="special">&amp;&amp;</span><span class="special">)</span><span class="special">;</span>
+  <span class="keyword">template</span><span class="special">&lt;</span><span class="keyword">typename</span> Functor<span class="special">&gt;</span> <span class="identifier">size_t</span> <a class="link" href="classboost_1_1lockfree_1_1mpsc__weak__queue.html#doxygen.classboost_1_1lockfree_1_1mpsc__weak__queue_1ab62f73cbf955cfd7161b8fd1225551c7"><span class="identifier">consume_all</span></a><span class="special">(</span><span class="identifier">Functor</span> <span class="special">&amp;&amp;</span><span class="special">)</span><span class="special">;</span>
+<span class="special">}</span><span class="special">;</span></pre></div>
+<div class="refsect1">
+<a name="id-1.3.20.6.3.3.4"></a><h2>Description</h2>
+<p>Multi-producer/single-consumer queue based on Dmitry Vyukov's MPSC algorithm.</p>
+<p>The push and pop methods execute in a bounded number of instructions (wait-free execution), but the queue as a whole is not lock-free in the strict sense (see Limitations).</p>
+<p>By default, a freelist manages node memory. Freed nodes are recycled internally rather than returned to the OS until the queue is destroyed.</p>
+<p><b>Limitations. </b>A good writeup of the limitations of this algorithm is available at <a href="https://int08h.com/post/ode-to-a-vyukov-queue/" target="_top">Ode to a Vyukov Queue</a>.</p>
+<p>
+</p>
+<div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; ">
+<li class="listitem"><p><span class="bold"><strong>Push</strong></span> atomicity: push exchanges the tail then links the previous node. If a producer thread terminates or stalls between these steps, the queue becomes inconsistent. The consumer will see a broken link and stop delivering elements until the producer completes the link. If the producer permanently terminates, the queue is permanently broken.</p></li>
+<li class="listitem"><p><span class="bold"><strong>Non-linearizable</strong></span>: per-producer FIFO is preserved, but no global ordering across concurrent producers exists. pop may return false even if the queue is non-empty when a concurrent push is in progress.</p></li>
+</ul></div>
+<p>
+</p>
+<p><b>Policies. </b></p>
+<div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; ">
+<li class="listitem"><p><a class="link" href="structboost_1_1lockfree_1_1freelist.html" title="Struct template freelist">boost::lockfree::freelist</a> (default <code class="computeroutput">true</code>):<br>
+ When enabled, freed nodes enter an internal freelist for reuse, avoiding repeated allocation. When disabled, the allocator handles every allocation and deallocation. Allocator operations may not be lock-free.</p></li>
+<li class="listitem"><p><a class="link" href="structboost_1_1lockfree_1_1fixed__sized.html" title="Struct template fixed_sized">boost::lockfree::fixed_sized</a> (default <code class="computeroutput">false</code>):<br>
+ When enabled, push never performs dynamic allocation, guaranteeing lock-free behavior. Nodes reside in a fixed array addressed by index. Capacity is limited to the index type's range (typically 2^16-2). This is required for lock-free operation on platforms lacking double-width CAS.</p></li>
+<li class="listitem"><p><a class="link" href="structboost_1_1lockfree_1_1capacity.html" title="Struct template capacity">boost::lockfree::capacity</a> (optional):<br>
+ Sets queue size at compile time. Implies <code class="computeroutput"><a class="link" href="structboost_1_1lockfree_1_1fixed__sized.html" title="Struct template fixed_sized">fixed_sized&lt;true&gt;</a></code>.</p></li>
+<li class="listitem"><p><a class="link" href="structboost_1_1lockfree_1_1allocator.html" title="Struct template allocator">boost::lockfree::allocator</a> (default <code class="computeroutput">std::allocator&lt;void&gt;</code>).</p></li>
+</ul></div>
+<p>
+</p>
+<p>
+</p>
+<p><b>Requirements. </b></p>
+<div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; ">
+<li class="listitem"><p>T must be move-constructible.</p></li>
+<li class="listitem"><p>T must be move-assignable.</p></li>
+</ul></div>
+<p>
+</p>
+<p>
+</p>
+<div class="note"><table border="0" summary="Note">
+<tr>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[Note]" src="../../../doc/src/images/note.png"></td>
+<th align="left">Note</th>
+</tr>
+<tr><td align="left" valign="top"><p>Only one consumer thread is supported. Multiple producer threads are supported. </p></td></tr>
+</table></div>
+<p>
+</p>
+<div class="refsect2">
+<a name="id-1.3.20.6.3.3.4.7"></a><h3>
+<a name="id-1_3_20_6_3_1_1_1_6-bb"></a><code class="computeroutput">mpsc_weak_queue</code> public member functions</h3>
+<div class="orderedlist"><ol class="orderedlist" type="1">
+<li class="listitem">
+<pre class="literallayout"><span class="keyword">bool</span> <a name="doxygen.classboost_1_1lockfree_1_1mpsc__weak__queue_1aef77c0fdd4ea4325e4f9262758166ace"></a><span class="identifier">is_lock_free</span><span class="special">(</span><span class="special">)</span> <span class="keyword">const</span><span class="special">;</span></pre>
+<p>
+</p>
+<div class="warning"><table border="0" summary="Warning">
+<tr>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[Warning]" src="../../../doc/src/images/warning.png"></td>
+<th align="left">Warning</th>
+</tr>
+<tr><td align="left" valign="top"><p>Only checks whether the head, tail, and freelist can be modified in a lock-free manner. On most platforms the entire implementation is lock-free when this returns true. </p></td></tr>
+</table></div>
+<p>
+</p>
+<div class="variablelist"><table border="0" class="variablelist compact">
+<colgroup>
+<col align="left" valign="top">
+<col>
+</colgroup>
+<tbody><tr>
+<td><p><span class="term">Returns:</span></p></td>
+<td><p>true if the implementation is lock-free.</p></td>
+</tr></tbody>
+</table></div>
+</li>
+<li class="listitem">
+<pre class="literallayout"><a name="doxygen.classboost_1_1lockfree_1_1mpsc__weak__queue_1a66823e71a282f9539548242b8df44df9"></a><span class="identifier">mpsc_weak_queue</span><span class="special">(</span><span class="special">)</span><span class="special">;</span></pre>
+<p>Construct a queue.</p>
+<p>Requires a <a class="link" href="structboost_1_1lockfree_1_1capacity.html" title="Struct template capacity">capacity&lt;&gt;</a> argument when freelist is enabled. </p>
+</li>
+<li class="listitem">
+<pre class="literallayout"><span class="keyword">template</span><span class="special">&lt;</span><span class="keyword">typename</span> U<span class="special">,</span> 
+         <span class="keyword">typename</span> Enabler <span class="special">=</span> <span class="identifier">std</span><span class="special">::</span><span class="identifier">enable_if</span><span class="special">&lt;</span> <span class="identifier">has_capacity</span> <span class="special">||</span> <span class="special">!</span><span class="identifier">use_freelist</span> <span class="special">&gt;</span> <span class="special">&gt;</span> 
+  <span class="keyword">explicit</span> <a name="doxygen.classboost_1_1lockfree_1_1mpsc__weak__queue_1a16f5e96bc9502dff88b02bba388f2827"></a><span class="identifier">mpsc_weak_queue</span><span class="special">(</span><span class="keyword">typename</span> <span class="identifier">boost</span><span class="special">::</span><span class="identifier">allocator_rebind</span><span class="special">&lt;</span> <span class="identifier">node_allocator</span><span class="special">,</span> <span class="identifier">U</span> <span class="special">&gt;</span><span class="special">::</span><span class="identifier">type</span> <span class="keyword">const</span> <span class="special">&amp;</span> alloc<span class="special">)</span><span class="special">;</span></pre>
+<p>Construct a fixed-sized queue with a custom allocator.</p>
+<p>Requires a <a class="link" href="structboost_1_1lockfree_1_1capacity.html" title="Struct template capacity">capacity&lt;&gt;</a> argument when freelist is enabled. </p>
+</li>
+<li class="listitem">
+<pre class="literallayout"><span class="keyword">template</span><span class="special">&lt;</span><span class="keyword">typename</span> Enabler <span class="special">=</span> <span class="identifier">std</span><span class="special">::</span><span class="identifier">enable_if</span><span class="special">&lt;</span> <span class="identifier">has_capacity</span> <span class="special">||</span> <span class="special">!</span><span class="identifier">use_freelist</span> <span class="special">&gt;</span> <span class="special">&gt;</span> 
+  <span class="keyword">explicit</span> <a name="doxygen.classboost_1_1lockfree_1_1mpsc__weak__queue_1a9094aecf9fb7f634d9d0647eee66c198"></a><span class="identifier">mpsc_weak_queue</span><span class="special">(</span><span class="identifier">allocator</span> <span class="keyword">const</span> <span class="special">&amp;</span> alloc<span class="special">)</span><span class="special">;</span></pre>
+<p>Construct a fixed-sized queue with a custom allocator.</p>
+<p>Requires a <a class="link" href="structboost_1_1lockfree_1_1capacity.html" title="Struct template capacity">capacity&lt;&gt;</a> argument when freelist is enabled. </p>
+</li>
+<li class="listitem">
+<pre class="literallayout"><span class="keyword">template</span><span class="special">&lt;</span><span class="keyword">typename</span> Enabler <span class="special">=</span> <span class="identifier">std</span><span class="special">::</span><span class="identifier">enable_if</span><span class="special">&lt;</span> <span class="special">!</span><span class="identifier">has_capacity</span> <span class="special">&amp;&amp;</span> <span class="identifier">use_freelist</span> <span class="special">&gt;</span> <span class="special">&gt;</span> 
+  <span class="keyword">explicit</span> <a name="doxygen.classboost_1_1lockfree_1_1mpsc__weak__queue_1ae0907b2fffe31e31cb91c4c658f26580"></a><span class="identifier">mpsc_weak_queue</span><span class="special">(</span><span class="identifier">size_type</span> n<span class="special">)</span><span class="special">;</span></pre>
+<p>Construct a variable-sized queue.</p>
+<p>Allocates <code class="computeroutput">n</code> nodes initially for the freelist.</p>
+<p>Requires that no <a class="link" href="structboost_1_1lockfree_1_1capacity.html" title="Struct template capacity">capacity&lt;&gt;</a> argument is specified and that freelist is enabled. </p>
+</li>
+<li class="listitem">
+<pre class="literallayout"><span class="keyword">template</span><span class="special">&lt;</span><span class="keyword">typename</span> Enabler <span class="special">=</span> <span class="identifier">std</span><span class="special">::</span><span class="identifier">enable_if</span><span class="special">&lt;</span> <span class="special">!</span><span class="identifier">has_capacity</span> <span class="special">&amp;&amp;</span> <span class="identifier">use_freelist</span> <span class="special">&gt;</span> <span class="special">&gt;</span> 
+  <a name="doxygen.classboost_1_1lockfree_1_1mpsc__weak__queue_1a5b673e48b5e1f99090872c5227cf8017"></a><span class="identifier">mpsc_weak_queue</span><span class="special">(</span><span class="identifier">size_type</span> n<span class="special">,</span> <span class="identifier">allocator</span> <span class="keyword">const</span> <span class="special">&amp;</span> alloc<span class="special">)</span><span class="special">;</span></pre>
+<p>Construct a variable-sized queue with a custom allocator.</p>
+<p>Allocates <code class="computeroutput">n</code> nodes initially for the freelist.</p>
+<p>Requires that no <a class="link" href="structboost_1_1lockfree_1_1capacity.html" title="Struct template capacity">capacity&lt;&gt;</a> argument is specified and that freelist is enabled. </p>
+</li>
+<li class="listitem"><pre class="literallayout"><a name="doxygen.classboost_1_1lockfree_1_1mpsc__weak__queue_1a983e12de0f05e3160d205a5139ceb15c"></a><span class="identifier">mpsc_weak_queue</span><span class="special">(</span><span class="keyword">const</span> <a class="link" href="classboost_1_1lockfree_1_1mpsc__weak__queue.html" title="Class template mpsc_weak_queue">mpsc_weak_queue</a> <span class="special">&amp;</span><span class="special">)</span> <span class="special">=</span> <span class="keyword">delete</span><span class="special">;</span></pre></li>
+<li class="listitem"><pre class="literallayout"><a class="link" href="classboost_1_1lockfree_1_1mpsc__weak__queue.html" title="Class template mpsc_weak_queue">mpsc_weak_queue</a> <span class="special">&amp;</span> <a name="doxygen.classboost_1_1lockfree_1_1mpsc__weak__queue_1a0dc752c9b598212594167e1670a523c3"></a><span class="keyword">operator</span><span class="special">=</span><span class="special">(</span><span class="keyword">const</span> <a class="link" href="classboost_1_1lockfree_1_1mpsc__weak__queue.html" title="Class template mpsc_weak_queue">mpsc_weak_queue</a> <span class="special">&amp;</span><span class="special">)</span> <span class="special">=</span> <span class="keyword">delete</span><span class="special">;</span></pre></li>
+<li class="listitem"><pre class="literallayout"><a name="doxygen.classboost_1_1lockfree_1_1mpsc__weak__queue_1a1d28e3b9f74efd2f269a406a09f71d64"></a><span class="identifier">mpsc_weak_queue</span><span class="special">(</span><a class="link" href="classboost_1_1lockfree_1_1mpsc__weak__queue.html" title="Class template mpsc_weak_queue">mpsc_weak_queue</a> <span class="special">&amp;&amp;</span><span class="special">)</span> <span class="special">=</span> <span class="keyword">delete</span><span class="special">;</span></pre></li>
+<li class="listitem"><pre class="literallayout"><a class="link" href="classboost_1_1lockfree_1_1mpsc__weak__queue.html" title="Class template mpsc_weak_queue">mpsc_weak_queue</a> <span class="special">&amp;</span> <a name="doxygen.classboost_1_1lockfree_1_1mpsc__weak__queue_1acf253fce57791318638db9733510ab69"></a><span class="keyword">operator</span><span class="special">=</span><span class="special">(</span><a class="link" href="classboost_1_1lockfree_1_1mpsc__weak__queue.html" title="Class template mpsc_weak_queue">mpsc_weak_queue</a> <span class="special">&amp;&amp;</span><span class="special">)</span> <span class="special">=</span> <span class="keyword">delete</span><span class="special">;</span></pre></li>
+<li class="listitem">
+<pre class="literallayout"><span class="keyword">template</span><span class="special">&lt;</span><span class="keyword">typename</span> Enabler <span class="special">=</span> <span class="identifier">std</span><span class="special">::</span><span class="identifier">enable_if</span><span class="special">&lt;</span> <span class="identifier">can_reserve</span> <span class="special">&gt;</span> <span class="special">&gt;</span> 
+  <span class="keyword">void</span> <a name="doxygen.classboost_1_1lockfree_1_1mpsc__weak__queue_1a3d59de8aaa2c80c0b6c02fa8ea0dfe78"></a><span class="identifier">reserve</span><span class="special">(</span><span class="identifier">size_type</span> n<span class="special">)</span><span class="special">;</span></pre>
+<p>Allocate n nodes for freelist</p>
+<p>
+</p>
+<div class="note"><table border="0" summary="Note">
+<tr>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[Note]" src="../../../doc/src/images/note.png"></td>
+<th align="left">Note</th>
+</tr>
+<tr><td align="left" valign="top"><p>thread-safe, may block if memory allocator blocks    </p></td></tr>
+</table></div>
+<p>
+</p>
+<div class="variablelist"><table border="0" class="variablelist compact">
+<colgroup>
+<col align="left" valign="top">
+<col>
+</colgroup>
+<tbody><tr>
+<td><p><span class="term">Requires:</span></p></td>
+<td><p>only valid if no <a class="link" href="structboost_1_1lockfree_1_1capacity.html" title="Struct template capacity">capacity&lt;&gt;</a> argument given </p></td>
+</tr></tbody>
+</table></div>
+</li>
+<li class="listitem">
+<pre class="literallayout"><span class="keyword">template</span><span class="special">&lt;</span><span class="keyword">typename</span> Enabler <span class="special">=</span> <span class="identifier">std</span><span class="special">::</span><span class="identifier">enable_if</span><span class="special">&lt;</span> <span class="identifier">can_reserve</span> <span class="special">&gt;</span> <span class="special">&gt;</span> 
+  <span class="keyword">void</span> <a name="doxygen.classboost_1_1lockfree_1_1mpsc__weak__queue_1a6fffcbe908b3acd891b2dc9855404347"></a><span class="identifier">reserve_unsafe</span><span class="special">(</span><span class="identifier">size_type</span> n<span class="special">)</span><span class="special">;</span></pre>
+<p>Allocate n nodes for freelist</p>
+<p>
+</p>
+<div class="note"><table border="0" summary="Note">
+<tr>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[Note]" src="../../../doc/src/images/note.png"></td>
+<th align="left">Note</th>
+</tr>
+<tr><td align="left" valign="top"><p>not thread-safe, may block if memory allocator blocks    </p></td></tr>
+</table></div>
+<p>
+</p>
+<div class="variablelist"><table border="0" class="variablelist compact">
+<colgroup>
+<col align="left" valign="top">
+<col>
+</colgroup>
+<tbody><tr>
+<td><p><span class="term">Requires:</span></p></td>
+<td><p>only valid if no <a class="link" href="structboost_1_1lockfree_1_1capacity.html" title="Struct template capacity">capacity&lt;&gt;</a> argument given </p></td>
+</tr></tbody>
+</table></div>
+</li>
+<li class="listitem">
+<pre class="literallayout"><a name="doxygen.classboost_1_1lockfree_1_1mpsc__weak__queue_1a50fee84104c9a949fba37a353d09efab"></a><span class="special">~</span><span class="identifier">mpsc_weak_queue</span><span class="special">(</span><span class="special">)</span><span class="special">;</span></pre>
+<p>Destroys the queue and frees all nodes from the freelist. </p>
+</li>
+<li class="listitem">
+<pre class="literallayout"><span class="keyword">bool</span> <a name="doxygen.classboost_1_1lockfree_1_1mpsc__weak__queue_1aa1c84517f529c0474e317e0bc40ec611"></a><span class="identifier">empty</span><span class="special">(</span><span class="special">)</span> <span class="keyword">const</span><span class="special">;</span></pre>
+<p>Check whether the queue is empty.</p>
+<p>
+</p>
+<div class="note"><table border="0" summary="Note">
+<tr>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[Note]" src="../../../doc/src/images/note.png"></td>
+<th align="left">Note</th>
+</tr>
+<tr><td align="left" valign="top"><p>The result is only accurate when no other thread modifies the queue concurrently. </p></td></tr>
+</table></div>
+<p>
+</p>
+<div class="variablelist"><table border="0" class="variablelist compact">
+<colgroup>
+<col align="left" valign="top">
+<col>
+</colgroup>
+<tbody><tr>
+<td><p><span class="term">Returns:</span></p></td>
+<td><p>true if the queue is empty, false otherwise.</p></td>
+</tr></tbody>
+</table></div>
+</li>
+<li class="listitem">
+<pre class="literallayout"><span class="keyword">bool</span> <a name="doxygen.classboost_1_1lockfree_1_1mpsc__weak__queue_1a02abbd1cad9f215e351e7dddc949421f"></a><span class="identifier">push</span><span class="special">(</span><span class="keyword">const</span> <span class="identifier">T</span> <span class="special">&amp;</span> t<span class="special">)</span><span class="special">;</span></pre>
+<p>Pushes a value to the queue.</p>
+<p>
+</p>
+<div class="note"><table border="0" summary="Note">
+<tr>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[Note]" src="../../../doc/src/images/note.png"></td>
+<th align="left">Note</th>
+</tr>
+<tr><td align="left" valign="top"><p>Thread-safe. Multiple producers may call push concurrently. When the memory pool is exhausted and the pool is not fixed-sized, a new node is allocated via the allocator, which may not be lock-free. </p></td></tr>
+</table></div>
+<p>
+</p>
+<div class="variablelist"><table border="0" class="variablelist compact">
+<colgroup>
+<col align="left" valign="top">
+<col>
+</colgroup>
+<tbody><tr>
+<td><p><span class="term">Returns:</span></p></td>
+<td><p>true if the value was pushed, false if node allocation failed.</p></td>
+</tr></tbody>
+</table></div>
+</li>
+<li class="listitem">
+<pre class="literallayout"><span class="keyword">bool</span> <a name="doxygen.classboost_1_1lockfree_1_1mpsc__weak__queue_1aa1f86e1e326cde3e31e6a96d89a74d79"></a><span class="identifier">push</span><span class="special">(</span><span class="identifier">T</span> <span class="special">&amp;&amp;</span> t<span class="special">)</span><span class="special">;</span></pre>
+<p>Pushes a value to the queue.</p>
+<p>
+</p>
+<div class="note"><table border="0" summary="Note">
+<tr>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[Note]" src="../../../doc/src/images/note.png"></td>
+<th align="left">Note</th>
+</tr>
+<tr><td align="left" valign="top"><p>Thread-safe. Multiple producers may call push concurrently. When the memory pool is exhausted and the pool is not fixed-sized, a new node is allocated via the allocator, which may not be lock-free.    </p></td></tr>
+</table></div>
+<p>
+</p>
+<div class="variablelist"><table border="0" class="variablelist compact">
+<colgroup>
+<col align="left" valign="top">
+<col>
+</colgroup>
+<tbody><tr>
+<td><p><span class="term">Returns:</span></p></td>
+<td><p>true if the value was pushed, false if node allocation failed.</p></td>
+</tr></tbody>
+</table></div>
+</li>
+<li class="listitem">
+<pre class="literallayout"><span class="keyword">template</span><span class="special">&lt;</span><span class="keyword">typename</span> Enabler <span class="special">=</span> <span class="identifier">std</span><span class="special">::</span><span class="identifier">enable_if</span><span class="special">&lt;</span> <span class="identifier">use_freelist</span> <span class="special">&gt;</span> <span class="special">&gt;</span> 
+  <span class="keyword">bool</span> <a name="doxygen.classboost_1_1lockfree_1_1mpsc__weak__queue_1ab8c4ef98cf56206fcb7a71ac6f9fb574"></a><span class="identifier">bounded_push</span><span class="special">(</span><span class="keyword">const</span> <span class="identifier">T</span> <span class="special">&amp;</span> t<span class="special">)</span><span class="special">;</span></pre>
+<p>Pushes a value to the queue without allocating.</p>
+<p>
+</p>
+<div class="note"><table border="0" summary="Note">
+<tr>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[Note]" src="../../../doc/src/images/note.png"></td>
+<th align="left">Note</th>
+</tr>
+<tr><td align="left" valign="top"><p>Thread-safe. Multiple producers may call bounded_push concurrently. Unlike push, bounded_push never allocates memory; it fails when the freelist is exhausted. </p></td></tr>
+</table></div>
+<p>
+
+</p>
+<div class="variablelist"><table border="0" class="variablelist compact">
+<colgroup>
+<col align="left" valign="top">
+<col>
+</colgroup>
+<tbody>
+<tr>
+<td><p><span class="term">Returns:</span></p></td>
+<td><p>true if the value was pushed, false if the freelist is empty.</p></td>
+</tr>
+<tr>
+<td><p><span class="term">Throws:</span></p></td>
+<td>std::bad_alloc if the allocator throws during node construction. </td>
+</tr>
+</tbody>
+</table></div>
+</li>
+<li class="listitem">
+<pre class="literallayout"><span class="keyword">template</span><span class="special">&lt;</span><span class="keyword">typename</span> Enabler <span class="special">=</span> <span class="identifier">std</span><span class="special">::</span><span class="identifier">enable_if</span><span class="special">&lt;</span> <span class="identifier">use_freelist</span> <span class="special">&gt;</span> <span class="special">&gt;</span> 
+  <span class="keyword">bool</span> <a name="doxygen.classboost_1_1lockfree_1_1mpsc__weak__queue_1a2a690d483f9e41a351f2c088fd6a454d"></a><span class="identifier">bounded_push</span><span class="special">(</span><span class="identifier">T</span> <span class="special">&amp;&amp;</span> t<span class="special">)</span><span class="special">;</span></pre>
+<p>Pushes a value to the queue without allocating.</p>
+<p>
+</p>
+<div class="note"><table border="0" summary="Note">
+<tr>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[Note]" src="../../../doc/src/images/note.png"></td>
+<th align="left">Note</th>
+</tr>
+<tr><td align="left" valign="top"><p>Thread-safe. Multiple producers may call bounded_push concurrently. Unlike push, bounded_push never allocates memory; it fails when the freelist is exhausted. </p></td></tr>
+</table></div>
+<p>
+
+</p>
+<div class="variablelist"><table border="0" class="variablelist compact">
+<colgroup>
+<col align="left" valign="top">
+<col>
+</colgroup>
+<tbody>
+<tr>
+<td><p><span class="term">Returns:</span></p></td>
+<td><p>true if the value was pushed, false if the freelist is empty.</p></td>
+</tr>
+<tr>
+<td><p><span class="term">Throws:</span></p></td>
+<td>std::bad_alloc if the allocator throws during node construction.    </td>
+</tr>
+</tbody>
+</table></div>
+</li>
+<li class="listitem">
+<pre class="literallayout"><span class="keyword">bool</span> <a name="doxygen.classboost_1_1lockfree_1_1mpsc__weak__queue_1aaebc4af2712fc27ae1b617d881cd06e2"></a><span class="identifier">unsynchronized_push</span><span class="special">(</span><span class="keyword">const</span> <span class="identifier">T</span> <span class="special">&amp;</span> t<span class="special">)</span><span class="special">;</span></pre>
+<p>Pushes a value to the queue without synchronization.</p>
+<p>
+</p>
+<div class="note"><table border="0" summary="Note">
+<tr>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[Note]" src="../../../doc/src/images/note.png"></td>
+<th align="left">Note</th>
+</tr>
+<tr><td align="left" valign="top"><p>Not thread-safe. Only one producer thread should call unsynchronized_push. When the memory pool is exhausted and the pool is not fixed-sized, a new node is allocated via the allocator, which may not be lock-free. </p></td></tr>
+</table></div>
+<p>
+
+</p>
+<div class="variablelist"><table border="0" class="variablelist compact">
+<colgroup>
+<col align="left" valign="top">
+<col>
+</colgroup>
+<tbody>
+<tr>
+<td><p><span class="term">Returns:</span></p></td>
+<td><p>true if the value was pushed, false if node allocation failed.</p></td>
+</tr>
+<tr>
+<td><p><span class="term">Throws:</span></p></td>
+<td>std::bad_alloc if the allocator throws during node construction. </td>
+</tr>
+</tbody>
+</table></div>
+</li>
+<li class="listitem">
+<pre class="literallayout"><span class="keyword">bool</span> <a name="doxygen.classboost_1_1lockfree_1_1mpsc__weak__queue_1a73b1b40a1afd81bb88a3e46c779a9153"></a><span class="identifier">unsynchronized_push</span><span class="special">(</span><span class="identifier">T</span> <span class="special">&amp;&amp;</span> t<span class="special">)</span><span class="special">;</span></pre>
+<p>Pushes a value to the queue without synchronization.</p>
+<p>
+</p>
+<div class="note"><table border="0" summary="Note">
+<tr>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[Note]" src="../../../doc/src/images/note.png"></td>
+<th align="left">Note</th>
+</tr>
+<tr><td align="left" valign="top"><p>Not thread-safe. Only one producer thread should call unsynchronized_push. When the memory pool is exhausted and the pool is not fixed-sized, a new node is allocated via the allocator, which may not be lock-free. </p></td></tr>
+</table></div>
+<p>
+
+</p>
+<div class="variablelist"><table border="0" class="variablelist compact">
+<colgroup>
+<col align="left" valign="top">
+<col>
+</colgroup>
+<tbody>
+<tr>
+<td><p><span class="term">Returns:</span></p></td>
+<td><p>true if the value was pushed, false if node allocation failed.</p></td>
+</tr>
+<tr>
+<td><p><span class="term">Throws:</span></p></td>
+<td>std::bad_alloc if the allocator throws during node construction.    </td>
+</tr>
+</tbody>
+</table></div>
+</li>
+<li class="listitem">
+<pre class="literallayout"><span class="keyword">bool</span> <a name="doxygen.classboost_1_1lockfree_1_1mpsc__weak__queue_1ac2f95038ef0b829d80e3e5261c77e085"></a><span class="identifier">pop</span><span class="special">(</span><span class="identifier">T</span> <span class="special">&amp;</span> ret<span class="special">)</span><span class="special">;</span></pre>
+<p>Pops an element from the queue.</p>
+<p>
+</p>
+<div class="note"><table border="0" summary="Note">
+<tr>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[Note]" src="../../../doc/src/images/note.png"></td>
+<th align="left">Note</th>
+</tr>
+<tr><td align="left" valign="top"><p>Thread-safe and wait-free. Only one consumer thread should call pop. The output argument may be modified even when the operation fails. pop may return false even if the queue is non-empty when a concurrent push is in progress (see Limitations). </p></td></tr>
+</table></div>
+<p>
+</p>
+<div class="variablelist"><table border="0" class="variablelist compact">
+<colgroup>
+<col align="left" valign="top">
+<col>
+</colgroup>
+<tbody><tr>
+<td><p><span class="term">Returns:</span></p></td>
+<td><p>true if an element was popped, false if the queue was empty.</p></td>
+</tr></tbody>
+</table></div>
+</li>
+<li class="listitem">
+<pre class="literallayout"><span class="keyword">template</span><span class="special">&lt;</span><span class="keyword">typename</span> U<span class="special">,</span> 
+         <span class="keyword">typename</span> Enabler <span class="special">=</span> <span class="identifier">std</span><span class="special">::</span><span class="identifier">enable_if_t</span><span class="special">&lt;</span> <span class="identifier">std</span><span class="special">::</span><span class="identifier">is_constructible</span><span class="special">&lt;</span> <span class="identifier">U</span><span class="special">,</span> <span class="identifier">T</span><span class="special">&amp;&amp;</span> <span class="special">&gt;</span><span class="special">::</span><span class="identifier">value</span> <span class="special">&gt;</span> <span class="special">&gt;</span> 
+  <span class="keyword">bool</span> <a name="doxygen.classboost_1_1lockfree_1_1mpsc__weak__queue_1a5cb9635cf316e4e111b182f3b28388d4"></a><span class="identifier">pop</span><span class="special">(</span><span class="identifier">U</span> <span class="special">&amp;</span> ret<span class="special">)</span><span class="special">;</span></pre>
+<p>Pops an element from the queue.</p>
+<p>
+
+</p>
+<div class="note"><table border="0" summary="Note">
+<tr>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[Note]" src="../../../doc/src/images/note.png"></td>
+<th align="left">Note</th>
+</tr>
+<tr><td align="left" valign="top"><p>Thread-safe and wait-free. Only one consumer thread should call pop. The output argument may be modified even when the operation fails. pop may return false even if the queue is non-empty when a concurrent push is in progress (see Limitations). </p></td></tr>
+</table></div>
+<p>
+</p>
+<div class="variablelist"><table border="0" class="variablelist compact">
+<colgroup>
+<col align="left" valign="top">
+<col>
+</colgroup>
+<tbody>
+<tr>
+<td><p><span class="term">Template Parameters:</span></p></td>
+<td><div class="variablelist"><table border="0" class="variablelist compact">
+<colgroup>
+<col align="left" valign="top">
+<col>
+</colgroup>
+<tbody><tr>
+<td><p><span class="term"><code class="computeroutput">U</code></span></p></td>
+<td><p>type to receive the popped value; U must be constructible from T (explicit or implicit). </p></td>
+</tr></tbody>
+</table></div></td>
+</tr>
+<tr>
+<td><p><span class="term">Returns:</span></p></td>
+<td><p>true if an element was popped, false if the queue was empty.</p></td>
+</tr>
+</tbody>
+</table></div>
+</li>
+<li class="listitem">
+<pre class="literallayout"><span class="identifier">std</span><span class="special">::</span><span class="identifier">optional</span><span class="special">&lt;</span> <span class="identifier">T</span> <span class="special">&gt;</span> <a name="doxygen.classboost_1_1lockfree_1_1mpsc__weak__queue_1ae06e39308b859ca27209cb37a91bbaa5"></a><span class="identifier">pop</span><span class="special">(</span><span class="identifier">uses_optional_t</span><span class="special">)</span><span class="special">;</span></pre>
+<p>Pops an element, returning a std::optional&lt;T&gt;.</p>
+<p>
+</p>
+<div class="note"><table border="0" summary="Note">
+<tr>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[Note]" src="../../../doc/src/images/note.png"></td>
+<th align="left">Note</th>
+</tr>
+<tr><td align="left" valign="top"><p>Thread-safe and wait-free. Only one consumer thread should call this overload. </p></td></tr>
+</table></div>
+<p>
+</p>
+<div class="variablelist"><table border="0" class="variablelist compact">
+<colgroup>
+<col align="left" valign="top">
+<col>
+</colgroup>
+<tbody><tr>
+<td><p><span class="term">Returns:</span></p></td>
+<td><p>std::optional containing the value on success, std::nullopt if the queue is empty.</p></td>
+</tr></tbody>
+</table></div>
+</li>
+<li class="listitem">
+<pre class="literallayout"><span class="keyword">template</span><span class="special">&lt;</span><span class="keyword">typename</span> U<span class="special">&gt;</span> <span class="identifier">std</span><span class="special">::</span><span class="identifier">optional</span><span class="special">&lt;</span> <span class="identifier">U</span> <span class="special">&gt;</span> <a name="doxygen.classboost_1_1lockfree_1_1mpsc__weak__queue_1a33de8831f5326a45f8316f54ab468144"></a><span class="identifier">pop</span><span class="special">(</span><span class="identifier">uses_optional_t</span><span class="special">)</span><span class="special">;</span></pre>
+<p>Pops an element, returning a std::optional.</p>
+<p>
+
+</p>
+<div class="note"><table border="0" summary="Note">
+<tr>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[Note]" src="../../../doc/src/images/note.png"></td>
+<th align="left">Note</th>
+</tr>
+<tr><td align="left" valign="top"><p>Thread-safe and wait-free. Only one consumer thread should call this overload. </p></td></tr>
+</table></div>
+<p>
+</p>
+<div class="variablelist"><table border="0" class="variablelist compact">
+<colgroup>
+<col align="left" valign="top">
+<col>
+</colgroup>
+<tbody>
+<tr>
+<td><p><span class="term">Template Parameters:</span></p></td>
+<td><div class="variablelist"><table border="0" class="variablelist compact">
+<colgroup>
+<col align="left" valign="top">
+<col>
+</colgroup>
+<tbody><tr>
+<td><p><span class="term"><code class="computeroutput">U</code></span></p></td>
+<td><p>type to receive the popped value; T must be convertible to U. </p></td>
+</tr></tbody>
+</table></div></td>
+</tr>
+<tr>
+<td><p><span class="term">Returns:</span></p></td>
+<td><p>std::optional&lt;U&gt; containing the value on success, std::nullopt if the queue is empty.</p></td>
+</tr>
+</tbody>
+</table></div>
+</li>
+<li class="listitem">
+<pre class="literallayout"><span class="keyword">bool</span> <a name="doxygen.classboost_1_1lockfree_1_1mpsc__weak__queue_1a9a33d45859299cb9af39433ad1428aa0"></a><span class="identifier">unsynchronized_pop</span><span class="special">(</span><span class="identifier">T</span> <span class="special">&amp;</span> ret<span class="special">)</span><span class="special">;</span></pre>
+<p>Pops an element without synchronization.</p>
+<p>
+</p>
+<div class="note"><table border="0" summary="Note">
+<tr>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[Note]" src="../../../doc/src/images/note.png"></td>
+<th align="left">Note</th>
+</tr>
+<tr><td align="left" valign="top"><p>Not thread-safe but wait-free. Only one consumer thread should call unsynchronized_pop. The output argument may be modified even when the operation fails. </p></td></tr>
+</table></div>
+<p>
+</p>
+<div class="variablelist"><table border="0" class="variablelist compact">
+<colgroup>
+<col align="left" valign="top">
+<col>
+</colgroup>
+<tbody><tr>
+<td><p><span class="term">Returns:</span></p></td>
+<td><p>true if an element was popped, false if the queue was empty.</p></td>
+</tr></tbody>
+</table></div>
+</li>
+<li class="listitem">
+<pre class="literallayout"><span class="keyword">template</span><span class="special">&lt;</span><span class="keyword">typename</span> U<span class="special">,</span> 
+         <span class="keyword">typename</span> Enabler <span class="special">=</span> <span class="identifier">std</span><span class="special">::</span><span class="identifier">enable_if_t</span><span class="special">&lt;</span> <span class="identifier">std</span><span class="special">::</span><span class="identifier">is_constructible</span><span class="special">&lt;</span> <span class="identifier">U</span><span class="special">,</span> <span class="identifier">T</span><span class="special">&amp;&amp;</span> <span class="special">&gt;</span><span class="special">::</span><span class="identifier">value</span> <span class="special">&gt;</span> <span class="special">&gt;</span> 
+  <span class="keyword">bool</span> <a name="doxygen.classboost_1_1lockfree_1_1mpsc__weak__queue_1a8f62273bb5e41673f57bc137262d9baf"></a><span class="identifier">unsynchronized_pop</span><span class="special">(</span><span class="identifier">U</span> <span class="special">&amp;</span> ret<span class="special">)</span><span class="special">;</span></pre>
+<p>Pops an element without synchronization.</p>
+<p>
+
+</p>
+<div class="note"><table border="0" summary="Note">
+<tr>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[Note]" src="../../../doc/src/images/note.png"></td>
+<th align="left">Note</th>
+</tr>
+<tr><td align="left" valign="top"><p>Not thread-safe but wait-free. Only one consumer thread should call unsynchronized_pop. </p></td></tr>
+</table></div>
+<p>
+</p>
+<div class="variablelist"><table border="0" class="variablelist compact">
+<colgroup>
+<col align="left" valign="top">
+<col>
+</colgroup>
+<tbody>
+<tr>
+<td><p><span class="term">Template Parameters:</span></p></td>
+<td><div class="variablelist"><table border="0" class="variablelist compact">
+<colgroup>
+<col align="left" valign="top">
+<col>
+</colgroup>
+<tbody><tr>
+<td><p><span class="term"><code class="computeroutput">U</code></span></p></td>
+<td><p>type to receive the popped value; U must be constructible from T (explicit or implicit). </p></td>
+</tr></tbody>
+</table></div></td>
+</tr>
+<tr>
+<td><p><span class="term">Returns:</span></p></td>
+<td><p>true if an element was popped, false if the queue was empty.</p></td>
+</tr>
+</tbody>
+</table></div>
+</li>
+<li class="listitem">
+<pre class="literallayout"><span class="keyword">template</span><span class="special">&lt;</span><span class="keyword">typename</span> Functor<span class="special">&gt;</span> <span class="keyword">bool</span> <a name="doxygen.classboost_1_1lockfree_1_1mpsc__weak__queue_1afc25d68e9dffe4bdeb4ea4e99b191fda"></a><span class="identifier">consume_one</span><span class="special">(</span><span class="identifier">Functor</span> <span class="special">&amp;&amp;</span> f<span class="special">)</span><span class="special">;</span></pre>
+<p>Consumes one element via a functor.</p>
+<p>Pops one element and applies the functor to it.</p>
+<p>
+</p>
+<div class="note"><table border="0" summary="Note">
+<tr>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[Note]" src="../../../doc/src/images/note.png"></td>
+<th align="left">Note</th>
+</tr>
+<tr><td align="left" valign="top"><p>Thread-safe and wait-free when the functor is thread-safe and non-blocking. Only one consumer thread should call this. </p></td></tr>
+</table></div>
+<p>
+</p>
+<div class="variablelist"><table border="0" class="variablelist compact">
+<colgroup>
+<col align="left" valign="top">
+<col>
+</colgroup>
+<tbody><tr>
+<td><p><span class="term">Returns:</span></p></td>
+<td><p>true if an element was consumed.</p></td>
+</tr></tbody>
+</table></div>
+</li>
+<li class="listitem">
+<pre class="literallayout"><span class="keyword">template</span><span class="special">&lt;</span><span class="keyword">typename</span> Functor<span class="special">&gt;</span> <span class="keyword">bool</span> <a name="doxygen.classboost_1_1lockfree_1_1mpsc__weak__queue_1ad7d055441f616652b5dc6db8dead378b"></a><span class="identifier">unsynchronized_consume_one</span><span class="special">(</span><span class="identifier">Functor</span> <span class="special">&amp;&amp;</span> f<span class="special">)</span><span class="special">;</span></pre>
+<p>Consumes one element via a functor without synchronization.</p>
+<p>Pops one element and applies the functor to it.</p>
+<p>
+</p>
+<div class="note"><table border="0" summary="Note">
+<tr>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[Note]" src="../../../doc/src/images/note.png"></td>
+<th align="left">Note</th>
+</tr>
+<tr><td align="left" valign="top"><p>Not thread-safe but wait-free. Only one consumer thread should call this. </p></td></tr>
+</table></div>
+<p>
+</p>
+<div class="variablelist"><table border="0" class="variablelist compact">
+<colgroup>
+<col align="left" valign="top">
+<col>
+</colgroup>
+<tbody><tr>
+<td><p><span class="term">Returns:</span></p></td>
+<td><p>true if an element was consumed.</p></td>
+</tr></tbody>
+</table></div>
+</li>
+<li class="listitem">
+<pre class="literallayout"><span class="keyword">template</span><span class="special">&lt;</span><span class="keyword">typename</span> Functor<span class="special">&gt;</span> <span class="identifier">size_t</span> <a name="doxygen.classboost_1_1lockfree_1_1mpsc__weak__queue_1ab62f73cbf955cfd7161b8fd1225551c7"></a><span class="identifier">consume_all</span><span class="special">(</span><span class="identifier">Functor</span> <span class="special">&amp;&amp;</span> f<span class="special">)</span><span class="special">;</span></pre>
+<p>Consumes all elements via a functor.</p>
+<p>Sequentially pops all elements and applies the functor to each.</p>
+<p>
+</p>
+<div class="note"><table border="0" summary="Note">
+<tr>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[Note]" src="../../../doc/src/images/note.png"></td>
+<th align="left">Note</th>
+</tr>
+<tr><td align="left" valign="top"><p>Thread-safe and wait-free when the functor is thread-safe and non-blocking. Only one consumer thread should call this. </p></td></tr>
+</table></div>
+<p>
+</p>
+<div class="variablelist"><table border="0" class="variablelist compact">
+<colgroup>
+<col align="left" valign="top">
+<col>
+</colgroup>
+<tbody><tr>
+<td><p><span class="term">Returns:</span></p></td>
+<td><p>the number of elements consumed.</p></td>
+</tr></tbody>
+</table></div>
+</li>
+</ol></div>
+</div>
+</div>
+</div>
+<div class="copyright-footer">Copyright © 2008-2026 Tim
+      Blechmann<p>
+        Distributed under the Boost Software License, Version 1.0. (See accompanying
+        file LICENSE_1_0.txt or copy at <a href="http://www.boost.org/LICENSE_1_0.txt" target="_top">http://www.boost.org/LICENSE_1_0.txt</a>)
+      </p>
+</div>
+<hr>
+<div class="spirit-nav">
+<a accesskey="p" href="classboost_1_1lockfree_1_1bounded__ticket__queue.html"><img src="../../../doc/src/images/prev.png" alt="Prev"></a><a accesskey="u" href="../lockfree/reference.html#doxygen.mpsc__weak__queue_8hpp"><img src="../../../doc/src/images/up.png" alt="Up"></a><a accesskey="h" href="../index.html"><img src="../../../doc/src/images/home.png" alt="Home"></a><a accesskey="n" href="structboost_1_1lockfree_1_1allocator.html"><img src="../../../doc/src/images/next.png" alt="Next"></a>
+</div>
+</body>
+</html>

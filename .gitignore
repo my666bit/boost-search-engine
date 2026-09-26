@@ -1,0 +1,7 @@
+#可执行程序
+debug
+parser
+http_server
+#中间文件
+*.o
+*.out

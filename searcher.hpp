@@ -4,6 +4,15 @@
  #include<jsoncpp/json/json.h>
 
  namespace ns_searcher{//建立索引的本质是把磁盘上去标签化的文档，以索引的形式正排倒排的形式加载到内存中
+    
+    struct InvertedElemPrint{
+        uint64_t doc_id;
+        int weight;
+        std::vector<std::string> words;
+        InvertedElemPrint():doc_id(0),weight(0){}
+    };
+
+
     class Searcher{//将index建立成单例模式，让searcher直接获取单例就可以
         private:
             ns_index::Index *index;//供系统进行查找的索引
@@ -32,7 +41,10 @@
                 ns_util::JiebaUtil::CutString(query,&words);
 
                 //2.【触发】：就是根据分词的各个词，进行index查找,建立index是忽略大小写，所以搜索关键字也要忽略大小写
-                ns_index::InvertedList inverted_list_all;//所有搜索分词的倒排拉链
+                //ns_index::InvertedList inverted_list_all;//所有搜索分词的倒排拉链
+                std::vector<InvertedElemPrint> inverted_list_all;
+
+                std::unordered_map<uint64_t,InvertedElemPrint> tokens_map;
                 for(std::string word:words){
                     boost::to_lower(word);
 
@@ -40,12 +52,28 @@
                     if(nullptr == inverted_list){
                         continue;
                     }
-                    inverted_list_all.insert(inverted_list_all.end(),inverted_list->begin(),inverted_list->end());
+                    //inverted_list_all.insert(inverted_list_all.end(),inverted_list->begin(),inverted_list->end());
+
+                    //去重
+                    for(const auto &elem : *inverted_list){
+                        auto &item = tokens_map[elem.doc_id];
+                        item.doc_id = elem.doc_id;
+                        item.weight+=elem.weight;
+                        item.words.push_back(elem.word);
+                    }
+                }
+                for(const auto &item:tokens_map){
+                    inverted_list_all.push_back(std::move(item.second));
                 }
 
                 //3.【合并排序】：汇总查找结果，按照相关性weight降序排序
-                std::sort(inverted_list_all.begin(),inverted_list_all.end(),\
+                /*std::sort(inverted_list_all.begin(),inverted_list_all.end(),\
                         [](const ns_index::InvertedElem &e1,const ns_index::InvertedElem &e2){
+                            return e1.weight>e2.weight;
+                        });*/
+
+                std::sort(inverted_list_all.begin(),inverted_list_all.end(),\
+                        [](const InvertedElemPrint &e1,const InvertedElemPrint &e2){
                             return e1.weight>e2.weight;
                         });
 
@@ -58,7 +86,7 @@
                     }
                     Json::Value elem;
                     elem["title"] = doc->title;
-                    elem["desc"] = GetDesc(doc->content,item.word);//内容描述摘要
+                    elem["desc"] = GetDesc(doc->content,item.words[0]);//内容描述摘要
                     elem["url"] = doc->url;
 
                     //for debug 便于查看关键词搜索出的相关文档倒排权重，就是看看文档的相关顺序是否正确
